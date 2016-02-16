@@ -1,0 +1,26 @@
+<html>
+    <body>
+        <ul class="clearfix" data-type="cityPick">
+            <li class="active_sort_opts" data-id="0">全部</li>
+            <li data-id="88">纽约</li>
+            <li data-id="119">洛杉矶</li>
+            <li data-id="138">拉斯维加斯</li>
+            <li data-id="84">夏威夷</li>
+            <li data-id="120">旧金山</li>
+            <li data-id="105">奥兰多</li>
+            <li data-id="118">西雅图</li>
+        </ul>
+        <script type="text/javascript" src="./jquery.min.js"></script>
+        <script>
+            (function(){
+                $("ul[data-type='cityPick']").on('click',function(){
+                    alert("父元素ul被点击");
+                });
+                $("ul[data-type='cityPick']").on('click','li',function(e){
+                    e.stopPropagation();//阻止冒泡
+                    alert("子元素li被点击");
+                });
+            })();
+        </script>
+    </body>
+</html>

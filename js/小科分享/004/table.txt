@@ -1,0 +1,13 @@
+1.table 是行内块级元素
+可设置独占一行
+2.display:table-cell;
+常用的display; none|block|inline-block|inline
+3.border-spacing td于td之间的间隔
+letter-spacing 字符间的间隔
+word-spacing 单词之间的间隔
+text-indent: 2em;
+
+$(function(){})dom加载完就执行
+而window.onload = function(){}要js加载完才执行
+那么就可以解释为什么中间有几次刷新会产生效果了
+换句话说 window.onload 在$(function(){});之后

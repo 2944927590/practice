@@ -1,0 +1,16 @@
+http://v.youku.com/v_show/id_XMTMyOTg0NTgwOA==.html?from=y1.2-1-105.3.3-2.1-1-1-2-0
+
+单向数据绑定(one-way data binding)
+
+http://wiki.jikexueyuan.com/project/react/thinking-in-react.html
+
+React 中数据是沿着组件树从上到下单向流动的。可能不会立刻明白哪个组件应该拥有哪些 state 数据模型。
+
+React 组件只能渲染单个根节点。如果你想要返回多个节点，它们必须被包含在同一个节点里。
+
+
+-》http://wiki.jikexueyuan.com/project/react/interactivity-dynamic-uIs.html
+
+
+
+npm run dev

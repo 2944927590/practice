@@ -1,0 +1,78 @@
+#container {
+	width: 100%;
+	height: 100%;
+	background: url(../images/bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+#container .reg{
+	position: absolute;
+	top: 50%;
+	left : 50%;
+	z-index: 30;
+	margin-top: -200px;
+	margin-left: -300px;
+	width: 600px;
+	height: 400px;	
+	border-radius: 10px;
+}
+#container .reg-opacity {
+	background: #000;
+	opacity: .5;
+	-ms-opacity: .5;	
+	-o-opacity: .5;
+	-moz-opacity: .5;
+	-webkit-opacity: .5;
+	filter:alpha(opacity=50);
+}
+#container .reg-content {
+	z-index: 40;
+	box-shadow: 0 0 20px #fff;
+}
+#container .reg-content .main {
+	padding :10px 30px 0;
+}
+#container .reg-content .reg-title {
+	height: 54px;
+	width: 100%;
+	border-radius: 10px 10px 0 0;
+	background: #BE4B32;
+}
+#container .reg-content .reg-title h1{
+	width: 100%;
+	line-height: 54px;
+	text-align: center;
+	color: #eee;
+}
+#container .reg-content .reg-main {
+	height:300px;
+	background: #eee;
+}
+#homyit-reg {
+	position: relative;
+}
+#homyit-reg .form-main{
+	
+	width: 100%;
+	height: 200px;
+	background: #ccc;
+}
+#homyit-reg .form-icon {
+    position: absolute;
+    left: -24px;
+    width: 540px;
+    border-width: 0 24px 34px;
+    border-style: dashed;
+    border-color: transparent;
+    border-bottom-color: #fff;
+    border-bottom-style: solid;
+}
+
+#homyit-reg .form-bottom {
+    position: absolute;
+    top: 234px;
+    left: -24px;
+    width: 588px;
+    height: 66px;
+    background: #ccc;
+}

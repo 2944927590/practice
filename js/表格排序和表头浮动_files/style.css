@@ -1,0 +1,123 @@
+* {
+	margin: 0px; padding: 0px;
+}
+body {
+	margin: 20px auto; text-align: center; font-size: 12px;
+}
+.main {
+	margin: 0px auto; width: 730px;
+}
+.nav {
+	text-align: right; padding-right: 10px;
+}
+.ads {
+	padding: 10px; text-align: center;
+}
+a:link {
+	color: rgb(8, 80, 156);
+}
+a:hover {
+	color: red;
+}
+a:visited {
+	color: rgb(8, 80, 156);
+}
+h1 {
+	margin: 5px; font-size: 16px;
+}
+.bg1 {
+	background: 0% 50% rgb(249, 249, 249);
+}
+.sorttable_sorted {
+	cursor: pointer;
+}
+.sorttable_sorted_reverse {
+	cursor: pointer;
+}
+.sorttable_sorted {
+	background: url("arrow.gif") no-repeat rgb(236, 238, 237);
+}
+.sorttable_sorted_reverse {
+	background: url("arrow.gif") no-repeat rgb(236, 238, 237);
+}
+.dt1 .sorttable_sorted_reverse {
+	background-position: 96% 7px; padding-right: 3px;
+}
+.dt1 .sorttable_sorted {
+	background-position: 96% -43px; padding-right: 3px;
+}
+.column_sortable {
+	color: rgb(8, 80, 156); cursor: pointer;
+}
+.column_sortable:hover {
+	color: red;
+}
+.dt1 {
+	margin: 3px auto;
+}
+.dt1 .txl {
+	text-align: left;
+}
+.dt1 .th1 {
+	background-color: rgb(236, 238, 237);
+}
+.dt1 th {
+	padding: 0pt 3px; border-left-color: rgb(156, 184, 234); border-left-width: 1px; border-left-style: solid;
+}
+.dt1 td {
+	padding: 0pt 3px; border-left-color: rgb(156, 184, 234); border-left-width: 1px; border-left-style: solid;
+}
+.dt1 th em {
+	font-style: normal; font-weight: lighter;
+}
+.dt1 td {
+	height: 23px;
+}
+.dt1 .th1 td {
+	background-color: rgb(222, 230, 251);
+}
+.dt1 .bd0 {
+	border: 0pt currentColor;
+}
+.th1 th {
+	padding: 5px 3px; line-height: 16px; vertical-align: top;
+}
+.table_1 {
+	margin: 3px auto; border: 1px solid rgb(156, 184, 234); width: 730px;
+}
+.table_1 thead {
+	background: rgb(222, 230, 251);
+}
+.table_1 tr td {
+	text-align: right;
+}
+.table_1 .w1 {
+	width: 84px;
+}
+.table_1 .w2 {
+	width: 63px;
+}
+.table_1 .w3 {
+	width: 63px;
+}
+.table_1 .w4 {
+	width: 63px;
+}
+.table_1 .w5 {
+	width: 63px;
+}
+.table_1 .w6 {
+	width: 63px;
+}
+.table_1 .w7 {
+	width: 63px;
+}
+.table_1 .w8 {
+	width: 62px;
+}
+.table_1 .w9 {
+	width: 62px;
+}
+.table_1 .w10 {
+	width: 73px;
+}

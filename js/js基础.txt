@@ -1,0 +1,623 @@
+变量名字可以任意取，只不过取名字要遵循一些规则:
+
+1.必须以字母、下划线或美元符号开头，后面可以跟字母、下划线、美元符号和数字。如下:
+
+正确:           
+    mysum            
+    _mychar         
+    $numa1          
+错误:
+  6num  //开头不能用数字
+  %sum //开头不能用除(_ $)外特殊符号,如(%  + /等)
+  sum+num //开头中间不能使用除(_ $)外特殊符号，如(%  + /等)
+2.变量名区分大小写，如:A与a是两个不同变量。
+
+3.不允许使用JavaScript关键字和保留字做变量名。
+
+ 如果A为真，A || B为真，不会在执行B; 反之，如果A为假，要由 B 的值来决定 A || B 的值。
+
+操作符之间的优先级（高到低）:
+
+算术操作符 → 比较操作符 → 逻辑操作符 → "="赋值符号
+
+如果同级的运算是按从左到右次序进行,多层括号由里向外。
+-----------------------------------------------
+了解成员数量(数组属性length)
+如果我们想知道数组的大小，只需引用数组的一个属性length。Length属性表示数组的长度，即数组中元素的个数。
+
+语法：
+
+myarray.length; //获得数组myarray的长度
+注意：因为数组的索引总是由0开始，所以一个数组的上下限分别是：0和length-1。如数组的长度是5，数组的上下限分别是0和4。
+
+var arr=[55,32,5,90,60,98,76,54];//包含8个数值的数组arr 
+document.write(arr.length); //显示数组长度8
+document.write(arr[7]); //显示第8个元素的值54
+同时，JavaScript数组的length属性是可变的，这一点需要特别注意。
+
+arr.length=10; //增大数组的长度
+document.write(arr.length); //数组长度已经变为10
+数组随元素的增加，长度也会改变，如下:
+
+var arr=[98,76,54,56,76]; // 包含5个数值的数组
+document.write(arr.length); //显示数组的长度5
+arr[15]=34;  //增加元素，使用索引为15,赋值为34
+alert(arr.length); //显示数组的长度16
+---------------------------------
+加载事件（onload）
+事件会在页面加载完成后，立即发生，同时执行被调用的程序。
+注意：1. 加载页面时，触发onload事件，事件写在<body>标签内。
+
+      2. 此节的加载页面，可理解为打开一个新页面时。
+如下代码,当加载一个新页面时，弹出对话框“加载中，请稍等…”。
+
+卸载事件（onunload）
+当用户退出页面时（页面关闭、页面刷新等），触发onUnload事件，同时执行被调用的程序。
+
+注意：不同浏览器对onunload事件支持不同。
+--------------------------------
+什么是对象
+JavaScript 中的所有事物都是对象，如:字符串、数值、数组、函数等，每个对象带有属性和方法。
+
+对象的属性：反映该对象某些特定的性质的，如：字符串的长度、图像的长宽等；
+
+对象的方法：能够在对象上执行的动作。例如，表单的“提交”(Submit)，时间的“获取”(getYear)等；
+
+JavaScript 提供多个内建对象，比如 String、Date、Array 等等，使用对象前先定义，如下使用数组对象：
+---------------------------------
+Date 日期对象
+日期对象可以储存任意一个日期，并且可以精确到毫秒数（1/1000 秒）。
+
+定义一个时间对象 :
+
+var Udate=new Date(); 
+注意:使用关键字new，Date()的首字母必须大写。 
+
+使 Udate 成为日期对象，并且已有初始值：当前时间(当前电脑系统时间)。
+
+-------------------------------------------------
+返回指定的字符串首次出现的位置
+indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。stringObject.indexOf(substring, startpos)
+--------
+字符串分割split()
+知识讲解：
+
+split() 方法将字符串分割为字符串数组，并返回此数组。
+
+语法：
+
+stringObject.split(separator,limit)
+-------
+提取字符串substring()
+substring() 方法用于提取字符串中介于两个指定下标之间的字符。
+
+语法:
+
+stringObject.substring(starPos,stopPos) 
+
+1. 返回的内容是从 start开始(包含start位置的字符)到 stop-1 处的所有字符，其长度为 stop 减start。
+
+2. 如果参数 start 与 stop 相等，那么该方法返回的就是一个空串（即长度为 0 的字符串）。
+
+3. 如果 start 比 stop 大，那么该方法在提取子串之前会先交换这两个参数。
+
+
+0------------------------------------
+提取指定数目的字符substr()
+substr() 方法从字符串中提取从 startPos位置开始的指定数目的字符串。
+
+语法:
+
+stringObject.substr(startPos,length)
+
+注意：如果参数startPos是负数，从字符串的尾部开始算起的位置。也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。
+
+如果startPos为负数且绝对值大于字符串长度，startPos为0。
+
+-------------------
+向上取整ceil()
+ceil() 方法可对一个数进行向上取整。
+
+语法:
+
+Math.ceil(x)
+参数说明:
+
+注意：它返回的是大于或等于x，并且与x最接近的整数。
+------------------
+向下取整floor()
+floor() 方法可对一个数进行向下取整。
+
+语法:
+
+Math.floor(x)
+参数说明：
+
+注意：返回的是小于或等于x，并且与 x 最接近的整数。
+-------------
+四舍五入round()
+round() 方法可把一个数字四舍五入为最接近的整数。
+
+语法:
+
+Math.round(x)
+参数说明：
+
+注意：
+
+1. 返回与 x 最接近的整数。
+
+2. 对于 0.5，该方法将进行上舍入。(5.5 将舍入为 6)
+
+3. 如果 x 与两侧整数同等接近，则结果接近 +∞方向的数字值 。(如 -5.5 将舍入为 -5; -5.52 将舍入为 -6)
+-----------------------
+随机数 random()
+random() 方法可返回介于 0 ~ 1（大于或等于 0 但小于 1 )之间的一个随机数。
+语法：
+
+Math.random();
+注意：返回一个大于或等于 0 但小于 1 的符号为正的数字值。
+
+我们取得介于 0 到 1 之间的一个随机数，代码如下：
+
+<script type="text/javascript">
+  document.write(Math.random());
+</script>
+运行结果：
+
+0.190305486195328  
+注意:因为是随机数，所以每次运行结果不一样，但是0 ~ 1的数值。
+-----------------------------------
+颠倒数组元素顺序reverse()
+reverse() 方法用于颠倒数组中元素的顺序。
+
+语法：
+
+arrayObject.reverse()
+注意：该方法会改变原来的数组，而不会创建新的数组。
+-------------------------------
+选定元素slice()
+slice() 方法可从已有的数组中返回选定的元素。
+
+语法
+
+arrayObject.slice(start,end)
+参数说明：
+
+1.返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。
+
+2. 该方法并不会修改数组，而是返回一个子数组。
+
+注意：
+
+1. 可使用负值从数组的尾部选取元素。
+
+2.如果 end 未被规定，那么 slice() 方法会选取从 start 到数组结尾的所有元素。
+
+3. String.slice() 与 Array.slice() 相似。
+---------------
+数组排序sort()
+sort()方法使数组中的元素按照一定的顺序排列。
+
+语法:
+
+arrayObject.sort(方法函数)
+参数说明：
+
+
+
+1.如果不指定<方法函数>，则按unicode码顺序排列。
+
+2.如果指定<方法函数>，则按<方法函数>所指定的排序方法排序。
+
+myArray.sort(sortMethod);
+注意: 该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。比较函数应该具有两个参数 a 和 b，其返回值如下： 
+
+  若返回值<=-1，则表示 A 在排序后的序列中出现在 B 之前。
+  若返回值>-1 && <1，则表示 A 和 B 具有相同的排序顺序。
+  若返回值>=1，则表示 A 在排序后的序列中出现在 B 之后。
+--------------
+计时器setInterval()
+在执行时,从载入页面后每隔指定的时间执行代码。
+
+语法:
+
+setInterval(代码,交互时间);
+参数说明：
+
+1. 代码：要调用的函数或要执行的代码串。
+
+2. 交互时间：周期性执行或调用表达式之间的时间间隔，以毫秒计（1s=1000ms）。
+
+返回值:
+
+一个可以传递给 clearInterval() 从而取消对"代码"的周期性执行的值。
+
+调用函数格式(假设有一个clock()函数):
+
+setInterval("clock()",1000)
+或
+setInterval(clock,1000)
+----------
+取消计时器clearInterval()
+clearInterval() 方法可取消由 setInterval() 设置的交互时间。
+
+语法：
+
+clearInterval(id_of_setInterval)
+参数说明:
+id_of_setInterval：由 setInterval() 返回的 ID 值。
+--------------
+计时器setTimeout()
+setTimeout()计时器，在载入后延迟指定时间后,去执行一次表达式,仅执行一次。
+
+语法:
+
+setTimeout(代码,延迟时间);
+参数说明：
+
+1. 要调用的函数或要执行的代码串。
+2. 延时时间：在执行代码前需等待的时间，以毫秒为单位（1s=1000ms)。
+--------------
+取消计时器clearTimeout()
+setTimeout()和clearTimeout()一起使用，停止计时器。
+
+语法:
+
+clearTimeout(id_of_setTimeout)
+参数说明:
+id_of_setTimeout：由 setTimeout() 返回的 ID 值。该值标识要取消的延迟执行代码块。
+----------------
+history对象记录了用户曾经浏览过的页面(URL)，并可以实现浏览器前进与后退相似导航的功能。
+
+注意:从窗口被打开的那一刻开始记录，每个浏览器窗口、每个标签页乃至每个框架，都有自己的history对象与特定的window对象关联。
+----------
+返回前一个浏览的页面
+back()方法，加载 history 列表中的前一个 URL。
+
+语法：
+
+window.history.back();
+比如，返回前一个浏览的页面，代码如下：
+
+window.history.back();
+注意：等同于点击浏览器的倒退按钮。
+
+back()相当于go(-1),代码如下:
+
+window.history.go(-1);
+------------------------------------
+返回下一个浏览的页面
+forward()方法，加载 history 列表中的下一个 URL。
+
+如果倒退之后，再想回到倒退之前浏览的页面，则可以使用forward()方法,代码如下:
+
+window.history.forward();
+注意：等价点击前进按钮。
+
+forward()相当于go(1),代码如下:
+
+window.history.go(1);
+----------------------------------
+返回浏览历史中的其他页面
+go()方法，根据当前所处的页面，加载 history 列表中的某个具体的页面。
+
+语法：
+
+window.history.go(number);
+参数：
+
+
+
+浏览器中，返回当前页面之前浏览过的第二个历史页面，代码如下：
+
+window.history.go(-2);
+注意：和在浏览器中单击两次后退按钮操作一样。
+
+同理，返回当前页面之后浏览过的第三个历史页面，代码如下：
+
+window.history.go(3);
+--------------------------
+HTML文档可以说由节点构成的集合，DOM节点有:
+
+1. 元素节点：上图中<html>、<body>、<p>等都是元素节点，即标签。
+
+2. 文本节点:向用户展示的内容，如<li>...</li>中的JavaScript、DOM、CSS等文本。
+
+3. 属性节点:元素属性，如<a>标签的链接属性href="http://www.imooc.com"
+-------
+getElementsByName()方法
+返回带有指定名称的节点对象的集合。
+
+语法：
+
+document.getElementsByName(name)
+与getElementById() 方法不同的是，通过元素的 name 属性查询元素，而不是通过 id 属性。
+
+注意:
+
+1. 因为文档中的 name 属性可能不唯一，所有 getElementsByName() 方法返回的是元素的数组，而不是一个元素。
+
+2. 和数组类似也有length属性，可以和访问数组一样的方法来访问，从0开始。
+------------------
+getElementsByTagName()方法
+返回带有指定标签名的节点对象的集合。返回元素的顺序是它们在文档中的顺序。
+
+语法:
+
+getElementsByTagName(Tagname)
+说明:
+
+1. Tagname是标签的名称，如p、a、img等标签名。
+
+2. 和数组类似也有length属性，可以和访问数组一样的方法来访问，所以从0开始。
+-----------------------
+getAttribute()方法
+通过元素节点的属性名称获取属性的值。
+
+语法：
+
+elementNode.getAttribute(name)
+说明:
+
+1. elementNode：使用getElementById()、getElementsByTagName()等方法，获取到的元素节点。
+
+2. name：要想查询的元素节点的属性名字
+--------------------------------------------
+setAttribute()方法
+setAttribute() 方法增加一个指定名称和值的新属性，或者把一个现有的属性设定为指定的值。
+
+语法：
+
+elementNode.setAttribute(name,value)
+说明：
+
+1.name: 要设置的属性名。
+
+2.value: 要设置的属性值。
+
+注意：
+
+1.把指定的属性设置为指定的值。如果不存在具有指定名称的属性，该方法将创建一个新属性。
+
+2.类似于getAttribute()方法，setAttribute()方法只能通过元素节点对象调用的函数。
+----------------
+节点属性
+在文档对象模型 (DOM) 中，每个节点都是一个对象。DOM 节点有三个重要的属性 ：
+
+1. nodeName : 节点的名称
+
+2. nodeValue ：节点的值
+
+3. nodeType ：节点的类型
+
+一、nodeName 属性: 节点的名称，是只读的。
+
+1. 元素节点的 nodeName 与标签名相同
+2. 属性节点的 nodeName 是属性的名称
+3. 文本节点的 nodeName 永远是 #text
+4. 文档节点的 nodeName 永远是 #document
+
+二、nodeValue 属性：节点的值
+
+1. 元素节点的 nodeValue 是 undefined 或 null
+2. 文本节点的 nodeValue 是文本自身
+3. 属性节点的 nodeValue 是属性的值
+
+三、nodeType 属性: 节点的类型，是只读的。以下常用的几种结点类型:
+
+元素类型    节点类型
+  元素          1
+  属性          2
+  文本          3
+  注释          8
+  文档          9
+------------------------------------
+访问子结点childNodes
+访问选定元素节点下的所有子节点的列表，返回的值可以看作是一个数组，他具有length属性。
+
+语法：
+
+elementNode.childNodes
+注意：
+
+如果选定的节点没有子节点，则该属性返回不包含节点的 NodeList。
+----------------------
+访问子结点的第一和最后项
+一、firstChild 属性返回‘childNodes’数组的第一个子节点。如果选定的节点没有子节点，则该属性返回 NULL。
+
+语法：
+
+node.firstChild
+说明：与elementNode.childNodes[0]是同样的效果。 
+
+二、 lastChild 属性返回‘childNodes’数组的最后一个子节点。如果选定的节点没有子节点，则该属性返回 NULL。
+
+语法：
+
+node.lastChild
+说明：与elementNode.childNodes[elementNode.childNodes.length-1]是同样的效果。 
+-----------
+访问父节点parentNode
+获取指定节点的父节点
+
+语法：
+
+elementNode.parentNode
+注意:父节点只能有一个。
+---------------------------------
+访问兄弟节点
+1. nextSibling 属性可返回某个节点之后紧跟的节点（处于同一树层级中）。
+
+语法：
+
+nodeObject.nextSibling
+说明：如果无此节点，则该属性返回 null。
+
+2. previousSibling 属性可返回某个节点之前紧跟的节点（处于同一树层级中）。
+
+语法：
+
+nodeObject.previousSibling  
+说明：如果无此节点，则该属性返回 null。
+
+注意: 两个属性获取的是节点。Internet Explorer 会忽略节点间生成的空白文本节点（例如，换行符号），而其它浏览器不会忽略
+------------------
+插入节点appendChild()
+在指定节点的最后一个子节点列表之后添加一个新的子节点。
+
+语法:
+
+appendChild(newnode)
+参数:
+
+newnode：指定追加的节点。
+-------------------------------------
+插入节点insertBefore()
+insertBefore() 方法可在已有的子节点前插入一个新的子节点。
+
+语法:
+
+insertBefore(newnode,node);
+
+参数:
+
+newnode: 要插入的新节点。
+
+node: 指定此节点前插入节点。
+------------------------------------
+删除节点removeChild()
+removeChild() 方法从子节点列表中删除某个节点。如删除成功，此方法可返回被删除的节点，如失败，则返回 NULL。
+
+语法:
+
+nodeObject.removeChild(node)
+参数:
+
+node ：必需，指定需要删除的节点。
+
+var content=document.getElementById("content");
+
+  var a = content.removeChild(content.childNodes[0]);
+  a = null;
+
+-----------------
+替换元素节点replaceChild()
+replaceChild 实现子节点(对象)的替换。返回被替换对象的引用。 
+
+语法：
+
+node.replaceChild (newnode,oldnew ) 
+参数：
+
+newnode : 必需，用于替换 oldnew 的对象。 
+oldnew : 必需，被 newnode 替换的对象。
+---------------
+创建元素节点createElement
+createElement()方法可创建元素节点。此方法可返回一个 Element 对象。
+
+语法：
+
+document.createElement(tagName)
+参数:
+
+tagName：字符串值，这个字符串用来指明创建元素的类型。
+
+注意：要与appendChild() 或 insertBefore()方法联合使用，将元素显示在页面中。
+--------------------------------
+创建文本节点createTextNode
+createTextNode() 方法创建新的文本节点，返回新创建的 Text 节点。
+
+语法：
+
+document.createTextNode(data)
+参数：
+
+data : 字符串值，可规定此节点的文本。
+---------------------
+浏览器窗口可视区域大小
+获得浏览器窗口的尺寸（浏览器的视口，不包括工具栏和滚动条）的方法:
+
+一、对于IE9+、Chrome、Firefox、Opera 以及 Safari：
+
+?  window.innerHeight - 浏览器窗口的内部高度
+
+?  window.innerWidth - 浏览器窗口的内部宽度
+
+二、对于 Internet Explorer 8、7、6、5：
+
+?  document.documentElement.clientHeight表示HTML文档所在窗口的当前高度。
+
+?  document.documentElement.clientWidth表示HTML文档所在窗口的当前宽度。
+
+或者
+
+Document对象的body属性对应HTML文档的<body>标签
+
+?  document.body.clientHeight
+
+?  document.body.clientWidth
+
+在不同浏览器都实用的 JavaScript 方案：
+
+var w= document.documentElement.clientWidth
+      || document.body.clientWidth;
+var h= document.documentElement.clientHeight
+      || document.body.clientHeight;
+--------------------
+网页尺寸scrollHeight
+scrollHeight和scrollWidth，获取网页内容高度和宽度。
+
+一、针对IE、Opera:
+
+scrollHeight 是网页内容实际高度，可以小于 clientHeight。
+
+二、针对NS、FF:
+
+scrollHeight 是网页内容高度，不过最小值是 clientHeight。也就是说网页内容实际高度小于 clientHeight 时，scrollHeight 返回 clientHeight 。
+
+三、浏览器兼容性
+
+var w=document.documentElement.scrollWidth
+   || document.body.scrollWidth;
+var h=document.documentElement.scrollHeight
+   || document.body.scrollHeight;
+注意:区分大小写
+
+scrollHeight和scrollWidth还可获取Dom元素中内容实际占用的高度和宽度。
+--------------------------------
+网页尺寸offsetHeight
+offsetHeight和offsetWidth，获取网页内容高度和宽度(包括滚动条等边线，会随窗口的显示大小改变)。
+
+一、值
+
+offsetHeight = clientHeight + 滚动条 + 边框。
+
+二、浏览器兼容性
+
+var w= document.documentElement.offsetWidth
+    || document.body.offsetWidth;
+var h= document.documentElement.offsetHeight
+    || document.body.offsetHeight;
+任务
+在script标签内，补充右边编辑器代码，获取网页的宽度和高度,并输出。
+----------------------
+网页卷去的距离与偏移量
+我们先来看看下面的图：
+
+
+
+scrollLeft:设置或获取位于给定对象左边界与窗口中目前可见内容的最左端之间的距离 ，即左边灰色的内容。
+
+scrollTop:设置或获取位于对象最顶端与窗口中可见内容的最顶端之间的距离 ，即上边灰色的内容。
+
+offsetLeft:获取指定对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 。
+
+offsetTop:获取指定对象相对于版面或由 offsetParent 属性指定的父坐标的计算顶端位置 。
+
+注意:
+
+1. 区分大小写
+
+2. offsetParent：布局中设置postion属性(Relative、Absolute、fixed)的父容器，从最近的父节点开始，一层层向上找，直到HTML的body。
+------

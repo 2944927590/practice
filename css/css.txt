@@ -1,0 +1,669 @@
+css中的内联对象与块对象
+
+在用CSS做页面的时候，我们总是会想到块对象和内联对象，那到底指的是什么呢？
+为什么说加上float或display：block就是块对象了呢？
+块对象默认宽度是100%（继承自父元素），如果没有采用“float:left/right;”样式，相邻的两个块对象就会分排在不同的两行上。
+内联对象的宽度取决于其内部元素的宽度与padding样式值之和，不可直接指定其宽度与高度（“display:block;”、“float:left/right;”强行转换后可以定义），相邻的两个内联对象会排在同一行上。
+   
+从这两点就应该可以看出来块对象和内联对象两者的区别，关于为什么加上float就成为块对象了，是因为float默认的就是display：block; display:inline是表示内联对象；display:block表示块对象。
+以下更清楚的告诉你两者的区别：
+什么是内联对象，什么是块对象？
+所有可视的文档对象都是块对象(block element)或者内联对象(inline element)。例如， div 是一个块对象，span 是一个内联对象。
+块对象的特征是从新的一行开始且能包含其他块对象和内联对象。从新的一行开始：比如div就是前后断行；
+内联对象被呈递时不会从新行开始，能够包含其他内联对象和数据。内联可以这样理解：不从新的一行开始，直接从内容里面，接着往后走。。。是指它能被别的对象内联。。。。
+
+==========================
+相关信息参考：css display参数
+block   : CSS1   块对象的默认值。将对象强制作为块对象呈递，为对象之后添加新行 
+none   : CSS1   隐藏对象。与 visibility 属性的hidden值不同，其不为被隐藏的对象保留其物理空间（页面物理尺寸大小空间） 
+inline   : CSS1   内联对象的默认值。将对象强制作为内联对象呈递，从对象中删除行
+
+改变此属性值（即：display）对其周围内容布局的影响可能是：
+属性值设为 block 的在对象后面添加新行。 
+属性值设为 inline 的从对象中删除一行。 
+属性值设为 none 的对象隐藏并释放其在文档中的物理空间(页面物理尺寸大小空间)。
+---------------
+清除浮动的方法：
+1.clear:both;clear:left;clear:right;
+2.width:100%;overflow:hidden;
+-------------------------------------------------------------------------------------------------------------
+ul ol dl
+1.ul是无序列表，也就是说没有排列限制可以随意加li； 
+<ul> 
+<li>可以随意放置</li> 
+<li>可以随意放置</li> 
+<li>可以随意放置</li> 
+</ul> 
+.可以随意放置 
+.可以随意放置 
+.可以随意放置 
+
+2.ol就序列表，会按照你写的li前后依次排列； 
+<ol> 
+<li>我是第一</li> 
+<li>我是第二</li> 
+<li>我是第三</li> 
+</ol> 
+1.我是第一 
+2.我是第二 
+3.我是第三 
+
+3.dl是定义列表，会默认前后层级关系； 
+<dl> 
+<dt>我是头</dt> 
+<dd>我是内容</dd> 
+<dd>我是内容</dd> 
+</dl> 
+我是头 
+--我是内容 
+--我是内容 
+-----------------------
+CSS控制文本超出指定宽度后用省略号代替，CSS控制文本不换行。
+一般的文字截断（适用于内联与块）：
+
+.text-overflow {
+    display:block;/*内联对象需加*/
+    width:31em;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+对于表格文字溢出的定义：
+对于表格超出范围显示省略号
+
+table{
+    width:30em;
+    table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+td{
+    width:100%;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+
+需要你注意的是，这个CSS样式只对单行的文字的效，如果你想把它用在多行上，也只有第一行有作用的。 这个写法只有IE会有“...”，
+
+其它的浏览器文本超出指定宽度时会隐藏。
+以上问题可以解决：使用CSS如何控制文本换行？使用CSS如何控制文本不换行？使用CSS如何控制文本超出范围后显示省略号？使用CSS如何控制文本超出范围后隐藏？感谢您的光临~~~
+-----------------------------------------------------------------------------------------------
+在jQuery中，width()方法用于获得元素宽度；innerWidth()方法用于获得包括内边界（padding）的元素宽度，outerWidth()方法用于获得包括内边界(padding)和边框(border)的元素宽度，如果outerWidth()方法的参数为true则外边界(margin)也会被包括进..
+
+jQuery中的.height()、.innerHeight()和.outerHeight()和W3C的盒模型相关的几个获取元素尺寸的方法。对应的宽度获取方法分别为.width()、.innerWidth()和.outerWidth()，在此不详述。
+1. .height()
+获取匹配元素集合中的第一个元素的当前计算高度值 或 设置每一个匹配元素的高度值（带一个参数）。
+
+注意：1）.css('height')和.height()之间的区别是后者返回一个没有单位的数值（例如，400），前者是返回带有完整单位的字符串（例如，400px）。
+2）.height()总是返回内容宽度,不管CSSbox-sizing属性值。.height('value')设置的容器宽度是根据CSSbox-sizing属性来定的, 将这个属性值改成border-box，将造成这个函数改变这个容器的outerHeight，而不是原来的内容高度。
+2. .innerHeight()
+为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，但是不包括border。
+
+3. .outerHeight()
+获取元素集合中第一个元素的当前计算高度值,包括padding，border和选择性的margin。返回一个整数（不包含“px”）表示的值 ，或如果在一个空集合上调用该方法，则会返回 null。
+
+在.outerHeight()计算中总是包含padding-top ,padding-bottom 和 border-top，border-bottom ；如果includeMargin参数是true，那么margin (top 和 bottom)也会被包含。
+
+-------------------------------------
+1.首先不要用层叠这个词，容易把关系搞混 
+2.absolute是受parentNode的position影响的 
+  parentNode的position不是relative,那absolute的绝对对象是针对body的 
+  parentNode的position  是relative,那absolute的绝对对象是针对parentNode的 
+  也就是说absolute的绝对是有参照Node的 
+3.对于复杂的position关系，要从parentNode的position的设置逐次的推下来 
+4.relative的node的尺寸会影响parentNode的尺寸,也就是说relative即定位也占位 
+  absolute的node的尺寸不影响parentNode的尺寸,也就是说absolute只定位不占位 
+5.z-index只对absolute的node有效
+-----------------------
+标签的权值为1，类选择符的权值为10，ID选择符的权值最高为100。继承有的书说是0.1，反正是最低
+
+---------------------------
+文字排版--斜体  font-style:italic;
+文字排版--下划线  text-decoration:underline;
+文字排版--删除线 text-decoration:line-through;
+段落排版--缩进 text-indent:2em;
+段落排版--行间距（行高）line-height:1.5em;
+段落排版--中文字间距、字母间距 
+中文字间隔、字母间隔设置：
+
+如果想在网页排版中设置文字间隔或者字母间隔就可以使用    letter-spacing 来实现，如下面代码：
+
+h1{
+    letter-spacing:50px;
+}
+...
+<h1>了不起的盖茨比</h1>
+注意：这个样式使用在英文单词时，是设置字母与字母之间的间距。
+
+单词间距设置：
+
+如果我想设置英文单词之间的间距呢？可以使用 word-spacing 来实现。如下代码：
+
+h1{
+    word-spacing:50px;
+}
+...
+<h1>welcome to imooc!</h1>
+
+
+元素分类
+在讲解CSS布局之前，我们需要提前知道一些知识，在CSS中，html中的标签元素大体被分为三种不同的类型：块状元素、内联元素(又叫行内元素)和内联块状元素。
+
+常用的块状元素有：
+
+<div>、<p>、<h1>...<h6>、<ol>、<ul>、<dl>、<table>、<address>、<blockquote> 、<form>
+
+常用的内联元素有：
+
+<a>、<span>、<br>、<i>、<em>、<strong>、<label>、<q>、<var>、<cite>、<code>
+
+常用的内联块状元素有：
+
+<img>、<input>
+
+
+元素分类--块级元素
+什么是块级元素？在html中<div>、 <p>、<h1>、<form>、<ul> 和 <li>就是块级元素。设置display:block就是将元素显示为块级元素。如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。
+
+a{display:block;}
+块级元素特点：
+
+1、每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行）
+
+2、元素的高度、宽度、行高以及顶和底边距都可设置。
+
+3、元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。
+
+
+元素分类--内联元素
+在html中，<span>、<a>、<label>、 <strong> 和<em>就是典型的内联元素（行内元素）（inline）元素。当然块状元素也可以通过代码display:inline将元素设置为内联元素。
+如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。
+
+ div{
+     display:inline;
+ }
+
+......
+
+<div>我要变成内联元素</div>
+内联元素特点：
+
+1、和其他元素都在一行上；
+
+2、元素的高度、宽度及顶部和底部边距不可设置；
+
+3、元素的宽度就是它包含的文字或图片的宽度，不可改变。
+
+小伙伴们你们观查一下右侧代码段，有没有发现一个问题，内联元素之间有一个间距问题，这个问题在本小节的 wiki 中有介绍，感兴趣的小伙伴可以去查看。
+
+元素分类--内联块状元素
+内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.1新增)，<img>、<input>标签就是这种
+内联块状标签。
+
+inline-block 元素特点：
+
+1、和其他元素都在一行上；
+
+2、元素的高度、宽度、行高以及顶和底边距都可设置。
+
+
+---------------------------------------------------------------
+
+盒模型--边框（一）
+盒子模型的边框就是围绕着内容及补白的线，这条线你可以设置它的粗细、样式和颜色(边框三个属性)。
+
+如下面代码为 div 来设置边框粗细为 2px、样式为实心的、颜色为红色的边框：
+
+div{
+    border:2px  solid  red;
+}
+上面是 border 代码的缩写形式，可以分开写：
+
+div{
+    border-width:2px;
+    border-style:solid;
+    border-color:red;
+}
+注意：
+
+1、border-style（边框样式）常见样式有：
+
+dashed（虚线）| dotted（点线）| solid（实线）。
+
+
+2、border-color（边框颜色）中的颜色可设置为十六进制颜色，如:
+
+border-color:#888;//前面的井号不要忘掉。
+
+3、border-width（边框宽度）中的宽度也可以设置为：
+
+thin | medium | thick（但不是很常用），最常还是用象素（px）。
+--------------------
+css布局模型
+清楚了CSS 盒模型的基本概念、 盒模型类型， 我们就可以深入探讨网页布局的基本模型了。布局模型与盒模型一样都是 CSS 最基本、 最核心的概念。 但布局模型是建立在盒模型基础之上，又不同于我们常说的 CSS 布局样式或 CSS 布局模板。如果说布局模型是本，那么 CSS 布局模板就是末了，是外在的表现形式。 
+CSS包含3种基本的布局模型，用英文概括为：Flow、Layer 和 Float。
+在网页中，元素有三种布局模型：
+1、流动模型（Flow）
+2、浮动模型 (Float)
+3、层模型（Layer）
+--------------------------------
+流动模型（一）
+先来说一说流动模型，流动（Flow）是默认的网页布局模式。也就是说网页在默认状态下的 HTML 网页元素都是根据流动模型来分布网页内容的。
+
+流动布局模型具有2个比较典型的特征：
+
+第一点，块状元素都会在所处的包含元素内自上而下按顺序垂直延伸分布，因为在默认状态下，块状元素的宽度都为100%。实际上，块状元素都会以行的形式占据位置。
+如右侧代码编辑器中三个块状元素标签(div，h1，p)宽度显示为100%。
+
+---------------------
+什么是层模型？
+什么是层布局模型？层布局模型就像是图像软件PhotoShop中非常流行的图层编辑功能一样，每个图层能够精确定位操作，但在网页设计领域，由于网页大小的活动性，层布局没能受到热捧。
+但是在网页上局部使用层布局还是有其方便之处的。下面我们来学习一下html中的层布局。
+
+如何让html元素在网页中精确定位，就像图像软件PhotoShop中的图层一样可以对每个图层能够精确定位操作。CSS定义了一组定位（positioning）属性来支持层布局模型。
+
+层模型有三种形式：
+
+1、绝对定位(position: absolute)
+
+2、相对定位(position: relative)
+
+3、固定定位(position: fixed)
+
+----------------------
+层模型--绝对定位
+如果想为元素设置层模型中的绝对定位，需要设置position:absolute(表示绝对定位)，这条语句的作用将元素从文档流中拖出来，
+然后使用left、right、top、bottom属性相对于其最接近的一个具有定位属性的父包含块进行绝对定位。如果不存在这样的包含块，
+则相对于body元素，即相对于浏览器窗口。
+--------------
+层模型--相对定位
+如果想为元素设置层模型中的相对定位，需要设置position:relative（表示相对定位），
+它通过left、right、top、bottom属性确定元素在正常文档流中的偏移位置。
+相对定位完成的过程是首先按static(float)方式生成一个元素(并且元素像层一样浮动了起来)，
+然后相对于以前的位置移动，移动的方向和幅度由left、right、top、bottom属性确定，偏移前的位置保留不动。
+--------------------
+层模型--固定定位
+fixed：表示固定定位，与absolute定位类型类似，但它的相对移动的坐标是视图（屏幕内的网页窗口）本身。
+由于视图本身是固定的，它不会随浏览器窗口的滚动条滚动而变化，除非你在屏幕中移动浏览器窗口的屏幕位置，
+或改变浏览器窗口的显示大小，因此固定定位的元素会始终位于浏览器窗口内视图的某个位置，不会受文档流动影响，
+这与background-attachment:fixed?属性功能相同。以下代码可以实现相对于浏览器视图向右移动100px，向下移动50px。
+并且拖动滚动条时位置固定不变。
+------------------------
+Relative与Absolute组合使用
+小伙伴们学习了12-6小节的绝对定位的方法：使用position:absolute可以实现被设置元素相对于浏览器（body）设置定位以后，
+大家有没有想过可不可以相对于其它元素进行定位呢？答案是肯定的，当然可以。使用position:relative来帮忙，但是必须遵守下面规范：
+
+1、参照定位的元素必须是相对定位元素的前辈元素：
+
+<div id="box1"><!--参照定位的元素-->
+    <div id="box2">相对参照元素进行定位</div><!--相对定位元素-->
+</div>
+从上面代码可以看出box1是box2的父元素（父元素当然也是前辈元素了）。
+
+2、参照定位的元素必须加入position:relative;
+
+#box1{
+    width:200px;
+    height:200px;
+    position:relative;        
+}
+3、定位元素加入position:absolute，便可以使用top、bottom、left、right来进行偏移定位了。
+
+#box2{
+    position:absolute;
+    top:20px;
+    left:30px;         
+}
+这样box2就可以相对于父元素box1定位了（这里注意参照物就可以不是浏览器了，而可以自由设置了）
+-----------------------------------------
+还记得在讲盒模型时外边距(margin)、内边距(padding)和边框(border)设置上下左右四个方向的边距是按照顺时针方向设置的：上右下左。具体应用在margin和padding的例子如下：
+
+margin:10px 15px 12px 14px;/*上设置为10px、右设置为15px、下设置为12px、左设置为14px*/
+通常有下面三种缩写方法:
+
+1、如果top、right、bottom、left的值相同，如下面代码：
+
+margin:10px 10px 10px 10px;
+可缩写为：
+
+margin:10px;
+2、如果top和bottom值相同、left和 right的值相同，如下面代码：
+
+margin:10px 20px 10px 20px;
+可缩写为：
+
+margin:10px 20px;
+3、如果left和right的值相同，如下面代码：
+
+margin:10px 20px 30px 20px;
+可缩写为：
+
+margin:10px 20px 30px;
+注意：padding、border的缩写方法和margin是一致的。
+---------------------------------------------------------------
+字体缩写
+网页中的字体css样式代码也有他自己的缩写方式，下面是给网页设置字体的代码：
+
+body{
+    font-style:italic;
+    font-variant:small-caps; 
+    font-weight:bold; 
+    font-size:12px; 
+    line-height:1.5em; 
+    font-family:"宋体",sans-serif;
+}
+这么多行的代码其实可以缩写为一句：
+
+body{
+    font:italic  small-caps  bold  12px/1.5em  "宋体",sans-serif;
+}
+注意：
+
+1、使用这一简写方式你至少要指定 font-size 和 font-family 属性，其他的属性(如 font-weight、font-style、font-varient、line-height)如未指定将自动使用默认值。
+
+2、在缩写时 font-size 与 line-height 中间要加入“/”斜扛。
+
+一般情况下因为对于中文网站，英文还是比较少的，所以下面缩写代码比较常用：
+
+body{
+    font:12px/1.5em  "宋体",sans-serif;
+}
+只是有字号、行间距、中文字体、英文字体设置。
+-------------------------
+颜色值
+在网页中的颜色设置是非常重要，有字体颜色（color）、背景颜色（background-color）、边框颜色（border）等，设置颜色的方法也有很多种：
+
+1、英文命令颜色
+
+前面几个小节中经常用到的就是这种设置方法：
+
+p{color:red;}
+2、RGB颜色
+
+这个与 photoshop 中的 RGB 颜色是一致的，由 R(red)、G(green)、B(blue) 三种颜色的比例来配色。
+
+p{color:rgb(133,45,200);}
+每一项的值可以是 0~255 之间的整数，也可以是 0%~100% 的百分数。如：
+
+p{color:rgb(20%,33%,25%);}
+3、十六进制颜色
+
+这种颜色设置方法是现在比较普遍使用的方法，其原理其实也是 RGB 设置，但是其每一项的值由 0-255 变成了十六进制 00-ff。
+
+p{color:#00ffff;}
+-----------------------------------
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{---水平居中-----}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+水平居中设置-行内元素（text-align:center;）
+我们在实际工作中常会遇到需要设置水平居中场景，今天我们就来看看怎么设置水平居中的。
+
+如果被设置元素为文本、图片等行内元素时，水平居中是通过给父元素设置 text-align:center 来实现的。如下代码：
+
+html代码：
+
+<body>
+  <div class="txtCenter">我是文本，哈哈，我想要在父容器中水平居中显示。</div>
+</body>
+css代码：
+
+<style>
+  div.txtCenter{
+    text-align:center;
+  }
+</style>
+------------------------------------------------------
+水平居中设置-定宽块状元素（margin:20px auto;）
+当被设置元素为块状元素时用 text-align：center 就不起作用了，这时也分两种情况：定宽块状元素和不定宽块状元素。这一小节我们先来讲一讲定宽块状元素。
+
+满足定宽和块状两个条件的元素是可以通过设置“左右margin”值为“auto”来实现居中的。我们来看个例子就是设置 div 这个块状元素水平居中：
+
+html代码：
+
+<body>
+  <div>我是定宽块状元素，哈哈，我要水平居中显示。</div>
+</body>
+css代码：
+
+<style>
+div{
+    border:1px solid red;/*为了显示居中效果明显为 div 设置了边框*/
+    
+    width:500px;/*定宽*/
+    margin:20px auto;/* margin-left 与 margin-right 设置为 auto */
+}
+
+</style>
+也可以写成：
+
+margin-left:auto;
+margin-right:auto;
+注意：元素的“上下 margin” 是可以随意设置的。
+--------------------------------------------------------------------
+水平居中总结-不定宽块状元素方法（一）
+在实际工作中我们会遇到需要为“不定宽度的块状元素”设置居中，比如网页上的分页导航，因为分页的数量是不确定的，所以我们不能通过设置宽度来限制它的弹性。
+
+不定宽度的块状元素有三种方法居中（这三种方法目前使用的都比多）：
+
+1  加入 table 标签
+
+
+2  设置 display;inline 方法
+
+
+3  设置 position:relative 和 left:50%;
+
+
+这一小节我们来讲一下第一种方法：
+
+第一步：为需要设置的居中的元素外面加入一个 table 标签 ( 包括 <tbody>、<tr>、<td> )。
+
+第二步：为这个 table 设置“左右 margin 居中”（这个和定宽块状元素的方法一样）。
+
+举例如下：
+
+html代码：
+
+<div>
+<table>
+  <tbody>
+    <tr><td>
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+    </td></tr>
+  </tbody>
+</table>
+</div>
+css代码：
+
+<style>
+table{
+    margin:0 auto;
+}
+
+ul{list-style:none;margin:0;padding:0;}
+li{float:left;display:inline;margin-right:8px;}
+</style>
+-------------------
+水平居中总结-不定宽块状元素方法（二）
+第二种方法：改变块级元素的 display 为 inline 类型，然后使用 text-align:center 来实现居中效果。如下例子：
+
+html代码：
+
+<body>
+<div class="container">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+</div>
+</body>
+css代码：
+
+<style>
+.container{
+    text-align:center;
+}
+.container ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:inline;
+}
+.container li{
+    margin-right:8px;
+    display:inline;
+}
+</style>
+这种方法相比第一种方法的优势是不用增加无语义标签，简化了标签的嵌套深度，
+但也存在着一些问题：它将块状元素的 display 类型改为 inline，变成了行内元素，所以少了一些功能，比如设定长度值。
+--------------------------------
+水平居中总结-不定宽块状元素方法（三）
+方法三：通过给父元素设置 float，然后给父元素设置 position:relative 和 left:50%，子元素设置 position:relative 和 left:-50% 来实现水平居中。
+
+代码如下：
+
+<body>
+<div class="container">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+</div>
+</body>
+css代码：
+
+<style>
+.container{
+    float:left;
+    position:relative;
+    left:50%
+}
+
+.container ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    
+    position:relative;
+    left:-50%;
+}
+.container li{float:left;display:inline;margin-right:8px;}
+</style>
+这种方法可以保留块状元素仍以 display:block 的形式显示，优点不添加无语议表标签，不增加嵌套深度，但它的缺点是设置了 position:relative，带来了一定的副作用。
+
+这三种方法使用得都非常广泛，各有优缺点，具体选用哪种方法，可以视具体情况而定。
+
+-----------------------------
+
+【【【【【【【【【【【【【【【【【【【垂直居中】】】】】】】】】】】】】】】】】】】】】】】】】
+垂直居中-父元素高度确定的单行文本（设置父元素的height 和 line-height 高度一致）
+父元素高度确定的单行文本的竖直居中的方法是通过设置父元素的 height 和 line-height 高度一致来实现的。如下代码：
+
+<div class="container">
+    hi,imooc!
+</div>
+css代码：
+
+<style>
+.container{
+    height:100px;
+    line-height:100px;
+    background:#999;
+}
+</style>
+-------------------------------------
+垂直居中-父元素高度确定的多行文本（方法一）
+父元素高度确定的多行文本、图片、块状元素的竖直居中的方法有两种：
+
+方法一：使用插入 table (包括tbody、tr、td)标签，同时设置 vertical-align：middle。
+
+说到竖直居中，css 中有一个用于竖直居中的属性 vertical-align，但这个样式只有在父元素为 td 或 th 时，才会生效。所以又要插入 table 标签了。下面看一下例子：
+
+html代码：
+
+<body>
+<table><tbody><tr><td class="wrap">
+<div>
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+</div>
+</td></tr></tbody></table>
+</body>
+css代码：
+
+table td{height:500px;background:#ccc}
+因为 td 标签默认情况下就默认设置了 vertical-align 为 middle，所以我们不需要显式地设置了。
+-----------------------------
+垂直居中-父元素高度确定的多行文本（方法二）（display 为 table-cell，激活 vertical-align 属性）
+在 chrome、firefox 及 IE8 以上的浏览器下可以设置块级元素的 display 为 table-cell，激活 vertical-align 属性，但注意 IE6、7 并不支持这个样式。
+
+html代码：
+
+<div class="container">
+    <div>
+        <p>看我是否可以居中。</p>
+        <p>看我是否可以居中。</p>
+        <p>看我是否可以居中。</p>
+        <p>看我是否可以居中。</p>
+        <p>看我是否可以居中。</p>
+    </div>
+</div>
+css代码：
+
+<style>
+.container{
+    height:300px;
+    background:#ccc;
+    display:table-cell;/*IE8以上及Chrome、Firefox*/
+    vertical-align:middle;/*IE8以上及Chrome、Firefox*/
+}
+</style>
+这种方法的好处是不用添加多余的无意义的标签，但缺点也很明显，它的兼容性不是很好，不兼容 IE6、7。
+-------------------------------------------
+隐性改变display类型
+有一个有趣的现象就是当为元素（不论之前是什么类型元素，display:none 除外）设置以下 2 个句之一：
+
+position : absolute
+float : left 或 float:right
+元素会自动变为以 display:inline-block 的方式显示，当然就可以设置元素的 width 和 height 了且默认宽度不占满父元素。
+
+如下面的代码，小伙伴们都知道 a 标签是行内元素，所以设置它的 width 是 没有效果的，但是设置为 position:absolute 以后，就可以了。
+
+<div class="container">
+    <a href="#" title="">进入课程请单击这里</a>
+</div>
+css代码
+
+<style>
+.container a{
+    position:absolute;
+    width:200px;
+    background:#ccc;
+}
+</style>
+--------------------------------
+ie7 font-size:0  width:0  height:0 
+-------------
+IE6下不支持透明，IE6下, 设置余下三条边的border-style为dashed,即可达到透明的效果
+- 透明:
+IE6浏览器不支持transparent透明属性,就border生成三角技术而言,直接设置对应的透明边框的border-style属性为 dotted或是dashed即可解决这一问题,原因是在IE6下, 点线与虚线均以边框宽度为基准,点线长度必须是其宽度的3倍以上（height>=border-width*3）,虚线宽长度必须是其宽度的5倍 以上（height>=border-width*5）,否则点线和虚线都不会出现.
+- IE6的奇偶bug:
+如果定位外框高度或是宽度为奇数,则IE6下,绝对定位元素的低定位和右定位会有1像素的误差.所以,尽量保证外框的高度或宽度为偶数值.
+- IE6的空div高度bug:
+IE6下,空div会有莫名的高度,也就是说height:0;不顶用,此时形成的尖角的实际占高于其他浏览器是有差异的.可使用font-size:0; + overflow:hidden;修复此问题.
+- filter: chroma滤镜
+该属性属性可以设置一个对象中指定的颜色为透明色, 如:
+border-color: pink;
+filter: chroma(color=pink);

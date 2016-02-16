@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="Lixiaoke">
+  <meta name="Keywords" content="关键字">
+  <meta name="Description" content="描述">
+  <title>position</title>
+
+
+  <!--style start-->
+	<link rel="stylesheet" href="../css/base.css" />
+
+	<style type="text/css">
+		#position {
+			position: relative;
+			width: 500px;
+			height: 400px;
+			margin: 0 auto;
+			background: #66cccc;
+		}
+		#position .position-relative {
+			position: relative;
+			top: 20px;
+			left: 20px;
+			width: 300px;
+			height: 200px;
+			background: #999;
+		}
+		#position .position-relative .icon {
+			display: block;
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			overflow: hidden;
+			/*
+			
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			*/
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			color: #eee;
+			font-style: normal;
+			text-align: center;
+			
+			background: #666;
+		}
+		#position .position-relative .tip {
+			position: absolute;
+			right: -212px;
+			top:50%; 
+			margin-top: -20px;
+			width: 200px;
+			height: 40px;
+			border-radius: 5px;
+			background: #4392e0;
+		}
+		#position .position-relative .tip .icon-tip {	
+			position: absolute;
+			top: 8px; 
+			left: -23px;
+			width: 0;
+			height: 0;
+			line-height: 0;
+			border: 12px solid transparent;
+			border-top-width: 0;
+			border-right-color: #4392e0;
+
+		}
+	</style>
+  <!--style end-->
+	
+ </head>
+	
+ <body>
+	
+	<!--
+		position 定位 （参照点）
+		
+		1、static
+		2、relative 相对定位（self）
+		3、absolute 绝对定位（2  1、relative |absolute| absolute  first  2、body）
+		4、fixed
+	-->
+	<div><h1>定位</h1></div>
+	<div id="position">
+		<div class="position-relative">
+			<span>fdsfsd</span>
+			<i class="icon">&times;</i>
+			<div class="tip">
+				<span class="tx">这里是提示信息！！！</span>
+				<span class="icon-tip"></span>
+			</div>
+		</div>
+	</div>
+
+	<!--import jquery-->
+	<script src="js/jquery.js" language="javascript"></script>
+	<!--import my js-->
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+		});
+	</script>
+ </body>
+</html>

@@ -1,0 +1,16 @@
+html,
+body,
+div,
+table,thead,tbody,tr,th,td,
+a {
+	margin: 0;
+	padding: 0;
+}
+body {
+	color: #666;
+	font-size: 14px;
+	font-family: "Micorsoft Yahei";
+}
+a {
+	text-decoration: none;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>phototype</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+// a 对象方法
+
+// b 类方法
+
+// c 原型方法
+
+		//1.对象方法
+		function people(name) {
+			this.name = name;
+			this.Introduce = function() {
+				alert("My name is " + this.name);
+			}
+		}
+
+		//2.类方法
+		people.run = function() {
+			alert("I can run!");	
+		}
+
+		//3.原型方法
+		people.prototype.IntroduceChinese = function() {
+			alert("this name is " + this.name);
+		}
+
+		// var p = new people("Tom");
+
+		// p.Introduce();
+
+		// people.run();
+
+		// p.IntroduceChinese();
+
+//obj1.func.call(obj)方法
+
+		function baseClass() {
+			this.showMsg = function() {
+				alert("baseClass::showMsg");
+			}
+		}
+
+		function extendClass() {
+
+		}
+
+		extendClass.prototype = new baseClass();
+
+		var instance = new extendClass();
+		console.log(instance);
+		// instance.showMsg();
+		//函数运行时会先去本体的函数中去找，如果找到则运行，找不到则去prototype中寻找函数。或者可以理解为prototype不会克隆同名函数。
+
+		var baseinstance = new baseClass();
+		// baseinstance.showMsg.call(instance);
+
+/*-------------JavaScript原型及原型链详解-------------------------------*/
+		
+		function f1() {};
+        var f2 = function() {};
+        var f3 = new Function('str', 'console.log(str)');
+            
+		var o3 = new f1();
+		var o1 = {};
+		var o2 =new Object();
+
+		//console.log(f1.prototype);
+		//console.log(o3.__proto__);
+
+		console.log(typeof  Object);    //function
+        console.log(typeof  Function);  //function
+        console.log(typeof o1);   //object
+        console.log(typeof o2);   //object
+		console.log(typeof o3);   //object
+		console.log(typeof  f1);  //function
+		console.log(typeof  f2);  //function
+		console.log(typeof  f3);  //function 
+
+
+
+		function  f1() {};
+	    console.log(f1. prototype) //f1 {}
+        console.log(typeof  f1. prototype) //Object
+        console.log(typeof  Function. prototype) // Function
+        console.log(typeof  Object. prototype) // Object
+        console.log(typeof  Function. prototype. prototype) //undefined
+
+        var  person  =  function(name){
+			this.name = name
+		};
+        person.prototype.getName = function(){
+            return this.name;
+		}
+        var xzq = new person('xzq');
+		var name = xzq.getName(); //zhangjiahao
+		console.log(name);
+
+		console.log(xzq.__proto__ === person.prototype) //true
+
+		console.log(person.prototype.__proto__ === Object.prototype) //true
+
+		console.log(Object.prototype.__proto__) //null
+
+		console.log(Object.__proto__ === Function.prototype ); // true
+
+		console.log(Function.__proto__ === Function.prototype ); // true
+
+		console.log(Function.prototype.__proto__ === Object.prototype); //true
+// 		其实这一点我也有点困惑，不过也可以试着解释一下。
+// 		Function.prototype是个函数对象，理论上他的__proto__应该指向 Function.prototype，就是他自己，自己指向自己，没有意义。
+// 		JS一直强调万物皆对象，函数对象也是对象，给他认个祖宗，指向Object. prototype。Object. prototype.__proto__ === null，保证原型链能够正常结束。
+
+
+		console.log( person.prototype. constructor === person  );//true
+		console.log( Function.prototype.constructor === Function  ); //true
+		console.log( Object.prototype.constructor === Object  ); //true
+
+		//要点：
+		//f1.prototype就是f1的一个实例对象。就是在f1创建的时候,创建了一个它的实例对象并赋值给它的prototype，基本过程如下：
+		 // var temp = new f1();
+		 // f1. prototype = temp;
+		 // JS在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做__proto__的内置属性，用于指向创建它的函数对象的原型对象prototype。以上面的例子为例：
+
+	</script>
+</body>
+</html>

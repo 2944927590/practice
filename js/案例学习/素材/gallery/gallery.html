@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta content="text/html;charset=utf-8;" http-equiv="content-type">
+    <link href="reset.css" type="text/css" rel="stylesheet">
+
+    <style type="text/css">
+
+        body
+        {
+            font-family: "微软雅黑";
+        }
+
+        #gallery
+        {
+            width: 700px;
+            position: relative;
+            margin: 20px auto 0;
+            background-color: #000;
+            min-height: 400px;
+            padding: 20px;
+        }
+
+            /*标题*/
+        #gallery h1
+        {
+            color: #fff;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        #gallery ul
+        {
+            width: 140px;
+            float: right;
+            margin: 10px 0 20px;
+        }
+
+        #gallery ul li
+        {
+            float: left;
+            margin: 20px 8px 0 0;
+        }
+
+        #gallery ul li span
+        {
+            display: block;
+            position: relative;
+            width: 60px;
+            height: 80px;
+            border: 1px solid #fff;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        #gallery  ul li span img
+        {
+            position: relative;
+            top: -200px;
+            left: -100px;
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+
+        #gallery ul li span.touch img, #gallery ul li:hover span img
+        {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        #gallery ul li:hover div
+        {
+            display: block;
+        }
+
+        #gallery ul li div  img
+        {
+            width: 460px;
+            height: 288px;
+        }
+
+        #gallery ul li div
+        {
+            display: none;
+            position: absolute;
+            top: 100px;
+            left: 30px;
+            border: 5px solid #fff;
+        }
+
+        .clearfix
+        {
+            clear: both;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="gallery">
+    <h1>纯CSS3相册效果</h1>
+    <ul>
+
+        <li>
+            <span class="touch"><img src="images/pic1.jpg"/></span>
+
+            <div style="display: block;">
+                <img src="images/pic1.jpg"/>
+            </div>
+        </li>
+
+        <li>
+            <span><img src="images/pic2.jpg"/></span>
+
+            <div>
+                <img src="images/pic2.jpg"/>
+            </div>
+        </li>
+        <li>
+            <span><img src="images/pic3.jpg"/></span>
+
+            <div>
+                <img src="images/pic3.jpg"/>
+            </div>
+        </li>
+
+        <li>
+            <span><img src="images/pic4.jpg"/></span>
+
+            <div>
+                <img src="images/pic4.jpg"/>
+            </div>
+        </li>
+
+        <li>
+            <span><img src="images/pic5.jpg"/></span>
+
+            <div>
+                <img src="images/pic5.jpg"/>
+            </div>
+        </li>
+
+
+    </ul>
+
+    <div class="clearfix"></div>
+</div>
+
+
+</body>
+</html>

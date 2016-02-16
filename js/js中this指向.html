@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>this指向</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		var point = {
+			 x : 0, 
+			 y : 0, 
+			 moveTo : function(x, y) { 
+			     this.x = this.x + x; 
+			     this.y = this.y + y; 
+			 }
+		};
+
+		//决策树解释：point.moveTo(1,1)函数不是new进行调用，进入否决策，
+		//是用dot(.)进行调用，则指向.moveTo之前的调用对象，即point
+
+		point.moveTo(1, 1); //this 绑定到当前对象,即point对象
+
+		console.log(this); //window
+
+		var f1 = function(){
+
+			console.log(this);
+			
+		}();
+		var f2 = (function($){
+			console.log($.x);
+		})(point);
+
+
+	</script>
+</body>
+</html>

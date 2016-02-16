@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="阿林十一">
+  <meta name="Keywords" content="关键字">
+  <meta name="Description" content="描述">
+  <title>提示框</title>
+
+  <!--style start-->
+	<style type="text/css">
+		/*-------- begin-base ------------*/
+		html,
+		body,
+		div,
+		h1,h2,h3,
+		ul,li,
+		a,
+		p,
+		span {
+			margin: 0;
+			padding: 0;
+		}
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+		body {
+			color: #666;
+			font-size: 14px;
+			font-family: "Microsoft Yahei";
+		}
+		a {
+			color: #eee;
+			text-decoration: none;
+		}
+		li {
+			list-style: none;
+		}
+		/*-------- end-base -------*/
+		#position {
+			position: relative;
+			width: 500px;
+			height: 400px;
+			margin: 0 auto;
+			color: #fff;
+			background: #66cccc;
+		}
+		#position .position-relative {
+		    position: relative;
+		    top: 20px;
+		    left: 20px;
+		    width: 300px;
+		    height: 200px;
+		    padding: 20px;
+		    background: #999;
+		}
+		#position .position-relative .icon {
+			display: block;
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			overflow: hidden;
+			/*
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			*/
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			color: #eee;
+			font-style: normal;
+			text-align: center;
+			
+			background: #666;
+		}
+		#position .position-relative .tip {
+			position: absolute;
+			right: -212px;
+			top:50%; 
+			margin-top: -20px;
+			width: 200px;
+			height: 40px;
+			border-radius: 5px;
+			background: #4392e0;
+		}
+		#position .position-relative .tip .icon-tip {	
+			position: absolute;
+			top: 8px; 
+			left: -23px;
+			border: 12px solid transparent;
+			border-top-width: 0;
+			border-right-color: #4392e0;
+
+		}
+		.icon-s {
+		    display: block;
+		    margin: 0 auto;
+		    width: 0;
+		    height: 0;
+		    border-style: dashed solid dashed dashed;
+		    border-color: transparent red transparent transparent;
+		    border-width: 0 70px 40px 40px;
+		}
+	</style>
+  <!--style end-->
+	
+ </head>
+	
+ <body>
+	<!--
+		position 定位 （参照点）
+		
+		1、static
+		2、relative 相对定位（self）
+		3、absolute 绝对定位（2  1、relative |absolute| absolute  first  2、body）
+		4、fixed
+		-->
+	<div id="position">
+		<div class="position-relative">
+			<span>提示信息</span>
+			<a href="javascript:;"><i class="icon">&times;</i></a>
+			<div class="tip">
+				<span class="tx">这里是提示信息！！！</span>
+				<span class="icon-tip"></span>
+			</div>
+		</div>
+	</div>
+
+	<span class="icon-s"></span>
+
+ </body>
+</html>

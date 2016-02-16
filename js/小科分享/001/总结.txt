@@ -1,0 +1,92 @@
+先简单说下作业：1、总结的内容有 浮动（float），列表（ul,ol,dl），head规范及四要素。
+2、把今天讲的相册集的效果写出来，严格按照代码规范来（注释、命名格式、css书写规范等）。
+
+1.
+浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。
+浮动框不在文档的普通流中
+
+
+2.
+ul ol dl
+1.ul是无序列表，也就是说没有排列限制可以随意加li； 
+<ul> 
+<li>可以随意放置</li> 
+<li>可以随意放置</li> 
+<li>可以随意放置</li> 
+</ul> 
+.可以随意放置 
+.可以随意放置 
+.可以随意放置 
+
+2.ol就序列表，会按照你写的li前后依次排列； 
+<ol> 
+<li>我是第一</li> 
+<li>我是第二</li> 
+<li>我是第三</li> 
+</ol> 
+1.我是第一 
+2.我是第二 
+3.我是第三 
+
+3.dl是定义列表，会默认前后层级关系； 
+<dl> 
+<dt>我是头</dt> 
+<dd>我是内容</dd> 
+<dd>我是内容</dd> 
+</dl> 
+我是头 
+--我是内容 
+--我是内容 
+
+3.head规范
+head区一般必须加入的标识有： 
+
+
+公司版权注释 
+<!--- the site is designed by MrJin 03/2001 ---> 
+
+网页显示字符集 
+	简体中文： 
+		<meta http-equiv="content-type" content="text/html; charset=gb2312"> 
+	繁体中文： 
+		<meta http-equiv="content-type" content="text/html; charset=big5"> 
+	英 语： 
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"> 
+		或者： 
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+
+原始制作者信息 
+	<meta name="author" content="52css@sc126.com"> 
+
+网站简介 
+	<meta name="description" content="这里填您网站的简介"> 
+
+搜索关键字 
+	<meta name="keywords" content="关键字1,关键字2,关键字3,..."> 
+
+网页的css规范 
+	<link href="style/style.css" rel="stylesheet" type="text/css"> 
+
+网页标题 
+	<title>这里是你的网页标题</title> 
+
+head区可选加入的标识有： 
+
+设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。 
+	<meta http-equiv="expires" content="wed, 26 feb 1997 08:21:57 gmt"> 
+
+禁止浏览器从本地机的缓存中调阅页面内容。 
+	<meta http-equiv="pragma" content="no-cache"> 
+
+用来防止别人在框架里调用你的页面。 
+	<meta http-equiv="window-target" content="_top"> 
+
+自动跳转（5指时间停留5秒）。 
+	<meta http-equiv="refresh" content="5;url=www.sc126.com"> 
+
+网页搜索机器人向导.用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。 
+	<meta name="robots" content="none"> 
+content的参数有all,none,index,noindex,follow,nofollow。默认是all。 
+
+收藏夹图标 
+	<link rel = "shortcut icon" href="favicon.ico"> 

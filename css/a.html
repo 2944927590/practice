@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>ajax请求HTML</title>
+
+</head>
+
+<body>
+<div id="container"></div>
+<div id="pageHome" class="page out" style="overflow:auto;">
+    
+</div>
+<form method="" action="">
+Homepage: <input name="hp" type="url" list="hpurls">
+<datalist id="hpurls">
+<option value="http://www.google.com/" label="Google">
+<option value="http://www.reddit.com/" label="Reddit">
+</datalist>
+</form> 
+<script>
+    function foo(num,num2){
+       // console.log(foo.caller);
+        // console.log(foo.arguments[1]);
+        // arguments[1] = 90;
+        // console.log(num2);
+        // function aa(){
+            
+        // }
+    }
+    // function a(){
+    //     foo();
+    // }
+    // a();
+
+    //foo(1,2);
+    console.log(foo.prototype);
+    //console.log(foo.caller);
+    var a = new foo();
+    var a1 = new Number();
+
+    var b = new Number(2);
+    
+    console.log(b.constructor);
+
+    console.log( Object(2).constructor );
+
+    console.log( Number(2).constructor );
+
+    console.log( (2).constructor );
+
+    console.log( 2..constructor );
+
+    console.log(Number().constructor);
+    
+    console.log( typeof 2. );
+
+    console.log(typeof Number(2));
+
+    console.log(!! (Object(2) === new Number(2)));
+
+    console.log(a.constructor);
+
+    console.log( 1.1 + 111.1 == 112.2 );
+
+    console.log();
+ 
+</script>
+</body>
+</html>

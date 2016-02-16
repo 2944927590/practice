@@ -1,0 +1,26 @@
+<script tyep="text/script"></script>
+<script ></script>
+
+position 定位 （参照物）
+1.static
+	
+2.relative (self自己)
+	
+3.absolute（）
+	
+4.fixed
+
+ 
+	
+
+overflow:hidden;
+white-space: nowrap;
+
+div.height:50;
+top:50%;
+margin-top:-25px;
+
+
+
+
+

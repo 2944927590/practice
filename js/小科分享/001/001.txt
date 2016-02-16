@@ -1,0 +1,78 @@
+小科讲坛：
+1.一个网站分成三个文件[： 文件1:css 文件2:js 文件3:images ]＋html
+2.css的命名规范： （能少写字母就少写）
+	a.位置属性：position,top,right,z-index,display,float.....
+	b.大小：
+	c.文字系列or文本属性：
+	d.背景：
+	e.其他：
+css 最好写成缩写的，padding,font等
+	最好不写0.8   写  .8   省略小数点的0
+	0px的话px最好不写。
+css命名不能用_ 要用－。
+
+	id表示元素定位
+	class可复用。
+	
+css   头：header
+	容器：container
+		
+
+3.html：
+	head:
+	(1)四必要素：a.<title></title>      ————title与搜索引擎挂钩。
+	   	       b.<meta charset=‘utf-8’>
+	    	       c.<meta name=‘Keywords’ content=‘关键词’>   ————与搜索引擎有关
+	    	       d.<meta name=‘Description’ content=’搜索引擎的介绍文字’>   ————与搜索引擎有关
+	(2) <link rel=“stylesheet” href＝“”>	
+注意：js不能写在head里面。and记得写注释(<!—css start—><!—end css—>)
+	body:
+	<script src=“”></script>
+	<script type=“text/javascript”></script>
+
+
+
+4.css：  	
+/*＊＊ css*/
+
+
+/*base css*/
+html,
+body,
+div,
+ul,li,
+dl,dt,dd,
+a,
+p  {
+	margin: 0;
+	padding: 0;
+}		
+body  {
+	color: #666;
+	font-size: 14px;
+	font-family:  “Microsoft Yahei”;(字体会由浏览器支持来显示。)
+}
+a {
+	color: #eee;
+	text-decoration: none;
+}
+li  {
+	list-style: none;
+}
+
+.clear{
+	clear: both;
+}
+
+4.搜索引擎：
+5.css浮动：
+6.img四要素: src=“” width=“” height=“” alt=“[被收缩引擎收录]”
+注意：块级元素占整行。 
+注意：h1只出现1次，作为中心思想。
+？问题：line-height(行高只在一行里面用？)
+行内居中：text-align: center
+块状居中：margin: auto 0;
+行类元素没有宽高。(span)
+浮动相当于飘在外面。
+作业：
+效果＋总结

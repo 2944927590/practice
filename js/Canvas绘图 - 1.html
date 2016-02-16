@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+ </head>
+ <style type="text/css">
+    body{margin:20px auto; padding:0; width:800px; }
+    canvas{border:dashed 2px #CCC}
+ </style>
+ <script type="text/javascript">
+    function $$(id){
+        return document.getElementById(id);
+    }
+    function pageLoad(){
+        var can = $$('can');
+        var cans = can.getContext('2d');
+        var objImg = new Image();
+        objImg.src = 'qq.png';
+        objImg.onload = function (){
+            cans.drawImage(objImg,220,220,300,100,0,0,500,400);
+        }
+    }
+ </script>
+<body onload="pageLoad();">
+    <canvas id="can" width="800px" height="600px" onclick="img_click(this);"></canvas>
+</body>
+</html>

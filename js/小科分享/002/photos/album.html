@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="Author" content="xzq"/>
+	<meta name="keywords" content="关键字"/>
+	<meta name="Description" content="描述"/>
+	<title>仿qq相册</title>
+	<link rel="stylesheet" href="css/base.css"/>
+	<link rel="stylesheet" href="css/album.css"/>
+</head>
+<body>
+	<div class="container-album-detail">
+		
+		<!--header-->
+		<div id="header">
+			<h1>宏奕相册</h1>	
+		</div>
+		<!--end header-->
+		
+		<div id="album-detail">
+			<div class="tab">
+				<div class="tab-list">
+					<ul>
+						<li>
+							<a href="javascript:;" class="select">
+								<span class="tx_2">相册</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<span class="tx_2">照片</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<span class="tx_2">面孔墙</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<span class="tx_2">视频</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tab-other">
+					<div class="photo-infos">
+						<div class="photo-info-item">
+							<a href="javascript:;" id="hover-droplist">
+								<i class="icon icon-nav"></i>
+								<span>应用</span>
+							</a>
+							<div class="mod-hover-droplist" style="display:none;"> 
+								<ul style="display:none;">
+									<li>
+										<a href="javascript:;">
+											<i class="iphoto"></i>
+											<span>个性相册</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="beauty"></i>
+											<span>照片美化</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="photodiy"></i>
+											<span>照片装扮</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="camera"></i>
+											<span>摄像头拍照</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="video"></i>
+											<span>动感影集</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="photoact"></i>
+											<span>照片活动</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="kadang_1"></i>
+											<span>卡当冲印</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:;">
+											<i class="share-album"></i>
+											<span>共享相册</span>
+										</a>
+									</li>
+								</ul>
+								<span class="mod-arr"></span>
+							</div>
+						</div>
+						<div class="photo-info-item">
+							<a href="javascript:;">
+								<i class="icon icon-delete"></i>
+								<span>回收站</span>
+							</a>
+						</div>
+						<div class="photo-info-item">
+							<a href="javascript:;">
+								<i class="icon icon-suggest"></i>
+								<span>反馈</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!--import jquery-->
+		<script type="text/javascript" src="js/jquery.js"></script>
+	<!--import album js-->
+		<script type="text/javascript" src="js/album.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			album.init();
+
+		});
+	</script>
+</body>
+</html>

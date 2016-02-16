@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>position -- absolute -- relative</title>
+</head>
+<style>
+	
+	.test-a{
+		position: absolute;
+		top:20px;
+		left:60px;
+		width:200px;
+		height: 100px;
+		background: red;
+	}
+	.test{
+		width:400px;
+		height: 100px;
+		background: green;
+	}
+	.test-r{
+		position:relative;
+		top:50px;
+		left:130px;
+		background: yellow;
+		width:160px;
+		height: 180px;
+	}
+
+	.test-rr{
+	    position: relative;
+	    top: 20px;
+	    left: 100px;
+	    width: 600px;
+	    height: 300px;
+	    background: blue;
+	}
+	.test-aa{
+		position: absolute;
+	    top: 24px;
+	    left: 34px;
+	    background: orange;
+	}
+	.test-aaa{
+		position: absolute;
+	    top: 24px;
+	    left: 34px;
+	    width:400px;
+	    height:200px;
+	    background: #18E457;
+	}
+	.test-aaaa{
+		position: absolute;
+	    top: 124px;
+	    left: 134px;
+	    width:400px;
+	    height:200px;
+	    background: yellow;
+	}
+	.test-rrr{
+		position: relative;
+	    top: 24px;
+	    left: 34px;
+	    width:400px;
+	    height:200px;
+	    background: yellow;
+	}
+	.test-rrr{
+		position: relative;
+	    top: 124px;
+	    left: 134px;
+	    width:400px;
+	    height:200px;
+	    background: red;
+	}
+	.test-r-a{
+		position: absolute;
+	    top: 124px;
+	    left: 134px;
+	    width:800px;
+	    height:800px;
+	    background: yellow;
+	}
+	.test-a-r{
+		position: relative;
+	    top: 124px;
+	    left: 134px;
+	    width:700px;
+	    height:700px;
+	    background: red;
+	}
+</style>
+<body>
+	<div class="test-a">absolute</div>
+	<div class="test">分割</div>
+	<div class="test-r">relative</div>
+
+	<h2	>结合使用</h2>
+	<p>parentNode的position不是relative或absolute,那absolute的绝对对象是针对body的 
+	  parentNode的position  是relative或absolute,那absolute的绝对对象是针对parentNode的 
+	  也就是说absolute的绝对是有参照Node的 </p>
+
+	<div class="test-rr">
+		absolute外的relative
+		<div class="test-aa">
+			relative内的absolute，，，里面这个div是相对外面那个div定位的
+		</div>
+	</div>
+
+	<div class="test-aaa">
+			absolute外的absolute
+			<div class="test-aaaa">
+				absolute内的absolute,,,,,,,,里面这个div是相对外面那个div定位的
+			</div>
+	</div>
+
+	<div class="test-rrr" >
+			relative外的relative
+			<div class="test-rrrr">
+				relative内的relative,,,,,,,,里面这个div是相对原来位置定位的
+			</div>
+	</div>
+
+	<div class="test-r-a">
+		relative外的absolute
+		<div class="test">
+			
+		
+			<div class="test-a-r">
+				relative内的absolute，，，里面这个div是相对原来位置定位的
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
+

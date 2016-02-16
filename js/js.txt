@@ -1,0 +1,591 @@
+HyMobile    ///
+node.js    /// 
+sea.js    ///  
+jquery   ///   源码
+
+JS中的phototype是JS中比较难理解的一个部分
+
+ 
+
+本文基于下面几个知识点:
+
+ 
+
+1 原型法设计模式
+
+在.Net中可以使用clone()来实现原型法
+
+原型法的主要思想是，现在有1个类A,我想要创建一个类B,这个类是以A为原型的,并且能进行扩展。我们称B的原型为A。
+
+2 javascript的方法可以分为三类：
+
+a 类方法
+
+b 对象方法
+
+c 原型方法
+
+
+function People(name)
+{
+  this.name = name;
+  //对象方法
+  this.Introduce = function(){
+    alert("My name is "+this.name);
+  }
+}
+
+
+//类方法
+People.Run=function(){
+  alert("I can run");
+}
+
+
+//原型方法
+People.prototype.IntroduceChinese=function(){
+  alert("我的名字是"+this.name);
+}
+
+
+
+//测试
+
+var p1=new People("Windking");
+
+p1.Introduce();
+
+People.Run();
+
+p1.IntroduceChinese();
+
+
+
+3 obj1.func.call(obj)方法
+
+意思是将obj看成obj1,调用func方法
+
+ 
+
+ 
+
+好了，下面一个一个问题解决：
+
+ 
+
+prototype是什么含义？
+
+ 
+
+javascript中的每个对象都有prototype属性，Javascript中对象的prototype属性的解释是：返回对象类型原型的引用。
+
+A.prototype = new B();
+
+理解prototype不应把它和继承混淆。A的prototype为B的一个实例，可以理解A将B中的方法和属性全部克隆了一遍。
+A能使用B的方法和属性。这里强调的是克隆而不是继承。可以出现这种情况：A的prototype是B的实例，同时B的prototype也是A的实例。
+
+function baseClass()
+{
+  this.showMsg = function()
+  {
+     alert("baseClass::showMsg");   
+  }
+}
+
+function extendClass()
+{
+}
+
+extendClass.prototype = new baseClass();
+var instance = new extendClass();
+instance.showMsg(); // 显示baseClass::showMsg
+
+
+实验证明：函数运行时会先去本体的函数中去找，如果找到则运行，找不到则去prototype中寻找函数。或者可以理解为prototype不会克隆同名函数。
+
+如果我想使用extendClass的一个实例instance调用baseClass的对象方法showMsg怎么办？
+
+extendClass.prototype = new baseClass();
+var instance = new extendClass();
+
+
+var baseinstance = new baseClass();
+baseinstance.showMsg.call(instance);//显示baseClass::showMsg
+
+
+
+
+-------------------------------------------------------------
+原型是Js中非常重要的概念，每个函数(在Js里面函数也是对象)都有一个叫prototype即原型)的属性，
+不过在一般情况下它的值都是null，但它他有一项非常重要的功能就是所以实例都会共享它里面的属性和方法(这就是Js里面实现继承的基础)！
+原型对于对象的实例来说是共享的，这既给程序带来方便，同时也会让人感到迷惑，出现好多让人意想不到的结果！
+
+第一: prototype不是为null 如果为null就没意义了！因为里面必须要有constructor。
+第二:prototype不是共享出来,而是原型链的搜索,继承会导致原型链延长。
+第三:你后面说的是没错的,但是继承这里需要看情况,你可以继承独立的属性,也能继承公用的,也能一起继承。
+就看call怎么用,或者再来个方法分别继承,当然了,不会分配新空间是正确的,因为根本也不需要,原因还是原型链搜索的问题。
+--------------
+
+
+(function(){})表示一个匿名函数。
+function(arg){...}定义了一个参数为arg的匿名函数，
+然后使用(function(arg){...})(param)来调用这个匿名函数。
+其中param是传入这个匿名函数的参数。
+需要注意与$(function(){})的区别：$(function(){}) 是
+ $(document).ready(function(){}) 的简写，
+用来在DOM加载完成之后执行一系列预先定义好的函数。
+
+------------------------------------------------------------------
+我们先把jQuery看成了一个类，这样好理解一些。
+
+=======jQuery.extend()，是扩展的jQuery这个类。===========
+
+假设我们把jQuery这个类看成是人类，能吃饭能喝水能跑能跳，现在我们用jQuery.extend这个方法给这个类拓展一个能唱歌的技能。
+这样的话，不论是男人，女人，xx人.....等能继承这个技能（方法）了。
+这说明啥啊，这说明.liu()变成了jQuery这个类本身的方法（object）嘛。他现在能”唱歌“了。
+但是吧，这个能力啊，只有代表全人类的 jQuery 这个类本身，才能用啊。你个人想用，你张三李四王五麻六，你个小草民能代表全人类嘛？
+所以啊，这个扩展也就是所谓的静态方法。只跟这个 类 本身有关。跟你具体的实例化对象是没关系滴。
+
+哦，原来jQuery.fn=jQuery.prototype，就是原型啊。
+那就一目了然了，
+=============jQuery.fn.extend拓展的是jQuery对象（原型的）的方法啊！===================
+对象是啥？就是类的实例化嘛，例如
+$("#abc") 
+ 这个玩意就是一个实例化的jQuery对象嘛。
+那就是说，jQuery.fn.extend拓展的方法，你得用在jQuery对象上面才行啊！他得是张三李四王五痳六这些实例化的对象才能用啊。
+说白了就是得这么用（假设xyz()是拓展的方法）：
+$('selector').xyz();
+ 你要是这么用$.xyz()；是会出错误滴。
+-------------------------------------------------------------------------
+合并 settings 和 options，修改并返回 settings。
+
+jQuery 代码:
+var settings = { validate: false, limit: 5, name: "foo" };
+var options = { validate: true, name: "bar" };
+jQuery.extend(settings, options);
+
+结果:
+settings == { validate: true, limit: 5, name: "bar" }
+
+
+描述:合并 defaults 和 options, 不修改 defaults。
+jQuery 代码:
+var empty = {};
+var defaults = { validate: false, limit: 5, name: "foo" };
+var options = { validate: true, name: "bar" };
+var settings = jQuery.extend(empty, defaults, options);
+
+结果:
+settings == { validate: true, limit: 5, name: "bar" }
+empty == { validate: true, limit: 5, name: "bar" }
+-------------------------------------------------------------------】
+(function(){
+    var sub$ = jQuery.sub();
+
+    sub$.fn.myCustomMethod = function(){
+      return 'just for me';
+    };
+
+    sub$(document).ready(function() {
+      sub$('body').myCustomMethod() // 'just for me'
+    });
+  })();
+  
+  typeof jQuery('body').myCustomMethod // undefined
+
+
+----------------------------------------------------------------
+jQuery为绑定和委托事件提供了.bind()、.live()和.delegate()方法
+http://www.jb51.net/article/28770.htm
+
+DOM在为页面中的每个元素分派事件时，相应的元素一般都在事件冒泡阶段处理事件。
+
+在类似 body > div > a 这样的结构中，如果单击a元素，click事件会从a一直冒泡到div和body（即document对象）。
+
+因此，发生在a上面的单击事件，div和body元素同样可以处理。而利用事件传播（这里是冒泡）这个机制，就可以实现事件委托。
+
+具体来说，事件委托就是事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素，甚至根元素（document）。 
+
+
+
+.bind() 
+假设有一个多行多列的表格，我们想让用户单击每个单元格都能看到与其中内容相关的更多信息（比如，通过提示条）。为此，可以为每个单元格都绑定click事件： 
+
+$("info_table td").bind("click", function(){/*显示更多信息*/}); 
+
+问题是，如果表格中要绑定单击事件的有10列500行，那么查找和遍历5000个单元格会导致脚本执行速度明显变慢，而保存5000个td元素和相应的事件处理程序也会占用大量内存（类似于让每个人亲自站在门口等快递）。 
+
+在前面这个例子的基础上，如果我们想实现一个简单的相册应用，每页只显示50张照片的缩略图（50个单元格），用户点击“第x页”（或“下一页”）链接可以通过Ajax从服务器动态加载另外50张照片。在这种情况下，似乎使用.bind()方法为50个单元格绑定事件又可以接受了。 
+
+事实却不然。使用.bind()方法只会给第一页中的50个单元格绑定单击事件，动态加载的后续页面中的单元格都不会有这个单击事件。换句话说，.bind()只能给调用它的时候已经存在的元素绑定事件，不能给未来新增的元素绑定事件（类似于新来的员工收不到快递）。 
+
+
+
+
+$("#info_table td").live("click",function(){/*显示更多信息*/}); 
+
+这里的.live()方法会把click事件绑定到$(document)对象（但这一点从代码中体现不出来，这也是.live()方法饱受诟病的一个重要原因，稍后再详细讨论），而且只需要给$(document)绑定一次（不是50次，更不是5000次），然后就能够处理后续动态加载的照片单元格的单击事件。在接收到任何事件时，$(document)对象都会检查事件类型和事件目标，如果是click事件且事件目标是td，那么就执行委托给它的处理程序。 
+
+.live() 
+到目前为止，一切似乎很完美。可惜，事实并非如此。因为.live()方法并不完美，它有如下几个主要缺点： 
+
+$()函数会找到当前页面中的所有td元素并创建jQuery对象，但在确认事件目标时却不用这个td元素集合，而是使用选择符表达式与event.target或其祖先元素进行比较，因而生成这个jQuery对象会造成不必要的开销； 
+默认把事件绑定到$(document)元素，如果DOM嵌套结构很深，事件冒泡通过大量祖先元素会导致性能损失； 
+只能放在直接选择的元素后面，不能在连缀的DOM遍历方法后面使用，即$("#infotable td").live...可以，但$("#infotable").find("td").live...不行； 
+收集td元素并创建jQuery对象，但实际操作的却是$(document)对象，令人费解。
+
+
+.delegate() 
+如前所述，为了突破单一.bind()方法的局限性，实现事件委托，jQuery 1.3引入了.live()方法。后来，为解决“事件传播链”过长的问题，jQuery 1.4又支持为.live()方法指定上下文对象。而为了解决无谓生成元素集合的问题，jQuery 1.4.2干脆直接引入了一个新方法.delegate()。 
+$("#info_table").delegate("td","click",function(){/*显示更多信息*/}); 
+
+所谓的事件委托，就是事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素，甚至根元素
+事件委托很好地利用了"事件冒泡"。当点击子元素，根据"事件冒泡"，该子元素的父级元素捕获了该次点击事件，并触发自己的方法。
+
+
+js事件绑定
+
+事件绑定，这里使用了冒泡的原理，从点击的元素开始，递归方式的向父元素传播事件，这样做的好处是对于大量要处理的元素，
+不必为每个元素都绑定事件，只需要在他们的父元素上绑定一次即可，提高性能。还有一个好处就是可以处理动态插入dom中的元素，直接绑定的方式是不行的。
+-----------------------------------------
+
+1.获取localStorage的长度：window.localStorage.length
+2.添加/编辑localStorage的内容：window.localStorage.setItem(键,值);
+3.根据对应的索引去获取对应localStorage的key的值：window.localStorage.key(索引);
+4.根据对应的key获取对应的的value：window.localStorage.getItem(key);
+
+----------------------------------------
+parse用于从一个字符串中解析出json对象,如
+
+var str = '{"name":"huangxiaojian","age":"23"}'
+
+结果：
+
+JSON.parse(str)
+
+Object
+
+age: "23"
+name: "huangxiaojian"
+__proto__: Object
+
+注意：单引号写在{}外，每个属性名都必须用双引号，否则会抛出异常。
+
+stringify()用于从一个对象解析出字符串，如
+
+var
+ a = {a:1,b:2}
+
+结果：
+
+JSON.stringify(a)
+
+"{"a":1,"b":2}"
+
+-------------------
+
+
+call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。
+因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。
+二者的作用完全一样，只是接受参数的方式不太一样。例如，有一个函数 func1 定义如下：var func1 = function(arg1, arg2) {};
+就可以通过 func1.call(this, arg1, arg2); 或者 func1.apply(this, [arg1, arg2]); 来调用。
+其中 this 是你想指定的上下文，他可以任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。
+JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。
+当参数数量不确定时，函数内部也可以通过 arguments 这个数组来便利所有的参数。
+
+
+
+其实就是动态的改变this了，下面例子就说明了。。。
+
+
+function add(a, b){console.dir(this);}
+
+
+function sub(a, b){console.dir(this);}
+
+
+add(1,2);
+
+"Window"
+
+
+sub(1,2);
+
+"Window"
+
+
+add.call(sub, 1, 2);
+
+"sub(a, b)"
+
+
+sub.apply(add, [1, 2]);
+
+"add(a, b)"
+
+
+
+var foo = {
+    name: 'joker',
+    showName: function() {
+	console.log(this.name);
+    }
+}
+
+var bar = {
+    name: 'rose'
+}
+
+foo.showName.call(bar);
+
+
+jQuery.Event.prototype = { 
+    preventDefault: function() { 
+        // 取消事件默认行为 
+    }, 
+    stopPropagation: function() { 
+        // 取消事件向上冒泡 
+    }, 
+    stopImmediatePropagation: function() { 
+        this.isImmediatePropagationStopped = returnTrue; 
+        this.stopPropagation(); 
+    }, 
+    isDefaultPrevented: returnFalse, 
+    isPropagationStopped: returnFalse, 
+    isImmediatePropagationStopped: returnFalse 
+};
+
+
+
+
+Core
+$()
+$.each
+$.extend
+$.inArray
+$.isArray
+$.isFunction
+$.isPlainObject  ------  {}， new Object();
+$.map            var b = $.map( [55, 1, 2], function( item, index ) {  
+                      return {  "label": 1,  "value": index  }
+                 });    //  [Object, Object, Object] 
+$.trim
+add
+addClass
+after
+append
+appendTo
+attr
+before
+children
+clone
+closest
+concat   
+contents
+css
+data
+each
+empty
+eq
+filter
+find
+first
+forEach  forEach(function(item, index, array){ ... }, [context])  	
+get
+	var elements = $('h2')
+	elements.get()   //=> get all headings as an array
+	elements.get(0)  //=> get first heading node
+hasClass
+height
+hide
+html
+index	
+indexOf  方法可返回某个指定的字符串值在字符串中首次出现的位置。
+insertAfter
+insertBefore
+is
+last
+map
+next
+not
+offset
+parent
+parents
+pluck
+prepend
+prependTo
+prev
+prop
+push
+ready
+reduce
+remove
+removeAttr
+removeClass
+replaceWith
+show
+siblings
+size
+slice
+text
+toggle
+toggleClass
+unwrap
+val
+width
+wrap
+wrapAll
+wrapInner
+Event
+$.Event
+$.proxy
+bind
+delegate
+die
+live
+off
+on
+one
+trigger
+triggerHandler
+unbind
+undelegate
+Ajax
+$.ajax
+$.ajaxJSONP
+$.ajaxSettings
+$.get
+$.getJSON
+$.param
+$.post
+load
+Form
+serialize
+serializeArray
+submit
+Effects
+$.fx
+animate
+Touch
+Touch events
+
+
+--------------------------------
+marquee 参数：
+BGColor：滚动文本框的背景颜色。
+Direction：滚动方向设置，可选择Left（从右到左）、Rightup（从下到上）和down（从上到下）
+scrolldelay：每轮滚动之间的延迟时间，数字越大滚动越慢。
+scrollamount：一次滚动总的时间量，数字越小滚动越慢。
+Behaviour：滚动的方式设置，三种取值：Scroll（循环滚动） lide（滑入，单次滚动）、Alternate（来回滚动）。
+Align：文字的对齐方式设置，可选择Middle(居中)、Bottom(居下)还是Top(居上)。
+Width：滚动文本框的宽度，输入一个数值后从后面的单选框选择in Pixels(按像素)或是in Percent(按百分比)。
+Height：滚动文本框的高度，输入一个数值后从后面的单选框选择in Pixels(按像素)或是in Percent(按百分比)。
+loop：滚动次数，默认为infinite（无限）
+hspace、vspace：前后、上下的空行。
+---------------------------------------------
+this的指向，插件的制作
+
+
+
+-----------------------
+
+知乎
+
+就目前看到的，大多数人用jquery无非两个方面，一个dom选择，以及衍生出来的.children,.siblings 等等，再一个就是event事件绑定，其他什么循环，方法声明啊，
+包括常用到的settimeout不都是原生的吗。我觉得jquery和原生根本不应该认为是对立关系，一个jquery高手肯定也会用到js类啊，理解原型链啊，理解dom这些东西，
+所以不应该认为用原生的就是厉害，用jquery就是不行这样的想法。你html结构复杂，用jquery选择器再方便不过了，设计要求的效果特别苛刻，用jquery的动画和特效再适合不过了，
+这些都是无可厚非的事情，但是你不可能一点不用到原生js而只用jquery吧，那是不可能的，变量声明都是原生js。所以面试的时候对面问你原生js用的怎么样的时候你大可自信的说，
+除了 dom 选择和 eventlisterner不太熟以外，其他都没问题
+
+---------------------------------------精篇-----------------------------------------------------
+一. 普通对象与函数对象
+                  JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object ，Function 是JS自带的函数对象。下面举例说明
+               
+function f1(){};
+       var f2 = function(){};
+       var f3 = new Function('str','console.log(str)');
+            
+var o3 = new f1();
+var o1 = {};
+       var o2 =new Object();
+ 
+ console.log(typeof  Object);  //function
+        console.log(typeof  Function);  //function
+        console.log(typeof o1);   //object
+        console.log(typeof o2);   //object
+console.log(typeof o3);   //object
+console.log(typeof  f1);   //function
+console.log(typeof  f2);   //function
+console.log(typeof  f3);   //function 
+ 
+在上面的例子中 o1  o2  o3 为普通对象，f1  f2  f3 为函数对象。
+怎么区分，其实很简单，凡是通过 new Function() 创建的对象都是函数对象，其他的都是普通对象。
+f1,f2,归根结底都是通过 new Function()的方式进行创建的。
+Function Object 也都是通过 New Function()创建的。
+
+二. 原型对象
+在 JavaScript 中，每当定义一个对象（函数）时候，对象中都会包含一些预定义的属性。其中函数对象的一个属性就是原型对象 prototype。
+注：普通对象没有prototype,但有__proto__属性。
+         原型对象其实就是普通对象（Function.prototype除外,它是函数对象，但它很特殊，他没有prototype属性（前面说道函数对象都有prototype属性））。看下面的例子：
+       function  f1(){};
+console.log(f1. prototype) //f1 {}
+       console.log(typeof  f1. prototype) //Object
+       console.log(typeof  Function. prototype) // Function
+       console.log(typeof  Object. prototype) // Object
+       console.log(typeof  Function. prototype. prototype) //undefined
+从这句console.log(f1. prototype) //f1 {} 的输出就结果可以看出，f1. prototype就是 f1的一个实例对象。
+就是在f1创建的时候,创建了一个它的实例对象并赋值给它的prototype，基本过程如下：
+var temp = new f1();
+f1. prototype = temp;
+所以，Function. prototype为什么是函数对象就迎刃而解了，上文提高凡是new Function ()产生的对象都是函数对象，所以temp是函数对象。
+       var temp = new Function ();
+Function. prototype = temp;
+ 
+那原型对象是用来做什么的呢？主要作用是用于继承。举了例子：
+ 
+       var  person  =  function(name){
+this.name = name
+};
+       person.prototype.getName = function(){
+              return this.name;
+}
+       var zjh = new person(‘zhangjiahao’);
+zjh.getName(); //zhangjiahao
+ 
+从这个例子可以看出，通过给person.prototype设置了一个函数对象的属性，那有person实例（例中：zjh）出来的普通对象就继承了这个属性。
+具体是怎么实现的继承，就要讲到下面的原型链了。
+
+三．原型链
+       JS在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做__proto__的内置属性，用于指向创建它的函数对象的原型对象prototype。以上面的例子为例：
+console.log(zjh.__proto__ === person.prototype) //true
+ 
+同样，person.prototype对象也有__proto__属性，它指向创建它的函数对象（Object）的prototype
+console.log(person.prototype.__proto__ === Object.prototype) //true
+ 
+继续，Object.prototype对象也有__proto__属性，但它比较特殊，为null
+ 
+console.log(Object.prototype.__proto__) //null
+ 
+我们把这个有__proto__串起来的直到Object.prototype.__proto__为null的链叫做原型链。
+
+疑点解释：
+1.Object.__proto__ === Function.prototype   // true
+Object是函数对象，是通过new Function()创建，所以Object.__proto__指向Function. prototype。
+2.Function.__proto__ === Function.prototype  // true
+Function 也是对象函数，也是通过new Function()创建，所以Function.__proto__指向Function. prototype。
+自己是由自己创建的，好像不符合逻辑，但仔细想想，现实世界也有些类似，你是怎么来的，你妈生的，你妈怎么来的，你姥姥生的，……类人猿进化来的，那类人猿从哪来，一直追溯下去……，就是无，（NULL生万物）
+ 正如《道德经》里所说“无，名天地之始”。
+ 3.Function.prototype.__proto__ === Object.prototype //true
+其实这一点我也有点困惑，不过也可以试着解释一下。
+Function.prototype是个函数对象，理论上他的__proto__应该指向 Function.prototype，就是他自己，自己指向自己，没有意义。
+JS一直强调万物皆对象，函数对象也是对象，给他认个祖宗，指向Object. prototype。Object. prototype.__proto__ === null，保证原型链能够正常结束。
+
+五．constructor
+       原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用
+person.prototype. constructor === person  //true
+Function.prototype.constructor === Function //true
+Object.prototype.constructor === Object //true
+
+ 有两点需要注意：
+注意Object.constructor===Function；//true 本身Object就是Function函数构造出来的        
+如何查找一个对象的constructor，就是在该对象的原型链上寻找碰到的第一个constructor属性所指向的对象

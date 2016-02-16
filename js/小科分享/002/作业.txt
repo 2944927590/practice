@@ -1,0 +1,36 @@
+0.
+    浮动是脱离文档流的，不占用原来的空间，在页面布局时常用于两列，两列以上或者混合布局中，用来使独占一行的多个块级元素可以并排在一行
+
+    清除浮动可以使用clear,1.clear:both; 2.clear:left; 3.clear:right;在不知道具体是向左或向右时，用clear:both;
+
+    伪类清除浮动: .fix:after{display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+CSS代码：
+	.box{padding:10px; background:gray;}
+	.fix{*zoom:1;}
+	.fix:after{display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+	.l{float:left;}
+HTML代码：
+	<div class="box fix">
+    		<img class="l" src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" />
+  	</div>
+    不清除浮动会使浮动的元素的父级没有高度，页面布局会乱
+	
+
+1.
+    absolute，是脱离文档流的原来的位置是不继续占据了，如果他的父级元素中有已经定位了的不管是absolute,fixed的还是relative，
+它都会相对于他的父级元素来定位，如果他的父级元素中没有定位了的那么它就是相对于body来定位的。
+也就是说absolute的绝对是有参照物的！
+    relative，是不会脱离文档流的原来的位置也就继续占据了，它是只相对于自身原来的位置来定位的!
+    fixed, 就是相对于浏览器窗口，就是你滚动条怎么滚动，他还是那个位置，就想是 “粘” 在窗口上了!
+2.  
+    border、transparent及使用border制作图标
+    比如
+    border: 12px solid transparent;
+    border-right-color: #4392e0;
+    可以根据原型，调整四边的宽度，制作出其他更好看的图标，比如
+    border: 12px solid transparent;
+    border-top-width: 0;
+    border-right-color: #4392e0;
+    对于ie7，在制作图标是将容器 height:0;width:0;line-height:0;
+3.vertical-align
+    

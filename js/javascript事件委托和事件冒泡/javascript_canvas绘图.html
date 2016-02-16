@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<canvas id='draw' width='200' height='200' > nothing </canvas>
+<script type="text/javascript">
+	 var draw = document.getElementById('draw');
+		  //确定是否支持canvas
+		  if(draw.getContext){
+		  //这样就取得绘图上下文对象的引用，画图便可以开始了！
+		  var context = draw.getContext('2d');
+		  //取得图像的数据uri，显示图像
+		  var imageuri = draw.toDataURL('qwe.jpg');
+		  var img = document.createElement('img');
+		  img.src= imageuri;
+		  document.body.appendChild(img);
+	 }
+	 var draw = document.getElementById('draw');
+	 if(draw.getContext){
+		 var context = draw.getContext('2d');
+		 context.strokeStyle = "#000";
+		 context.fillStyle = '#0000ff';
+	 }
+	 	var draw = document.getElementById('draw');
+		if(draw.getContext){
+
+			var context = draw.getContext('2d');
+			//绘制黑色矩形
+			context.strokeStyle = "#000";
+			context.strokeRect(10,10,50,50);
+			//绘制黑色矩形
+			context.strokeStyle = "#000";
+			context.fillRect(30,30,50,50);
+
+			//在两个填充矩形重叠的地方清除一个小矩形
+			context.clearRect(40,40,10,10);
+
+			//绘制描边矩形
+			context.fillStyle = '#0000ff';
+			context.fillRect(30,30,50,50);
+
+		}
+		if(context.isPointInPath(100,100)){ 
+	   		 alert("点击这里http://t.cn/RUbL4rP，就可以跳转，快来看看阿！");      
+		}
+</script>
+</body>
+</html>

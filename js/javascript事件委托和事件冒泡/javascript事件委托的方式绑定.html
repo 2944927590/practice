@@ -1,0 +1,128 @@
+<style type="text/css">
+    #out{width: 500px;background-color: #CDE}
+    #inner{background-color: #ABCDEF;margin: 0;padding: 0;width: 400px;}
+    ul{background-color: pink;margin: 0;padding: 0;width: 400px;}
+    li{width:398px;height: 20px;border: 1px solid black;margin: 15px 0px;padding: 0px;list-style: none;}
+</style>
+
+<div id="out">
+    <ul id="inner">
+        <li class="lia" attr-action="setWhat">class="lia" attr-action="setWhat"</li>
+        <li class="lia" attr-action="setWhat">class="lia" attr-action="setWhat"</li>
+        <li class="lib" attr-action="setWhat">class="lia" attr-action="setWhat"</li>
+        <li class="lib">class="lib"</li>
+        <li class="lib">class="lib"</li>
+        <li class="lib">class="lib"</li>
+    </ul>
+</div>
+
+<ul>
+    <li class="lia" attr-action="setWhat">class="lia" attr-action="setWhat"</li>
+    <li class="lia" attr-action="setWhat">class="lia" attr-action="setWhat"</li>
+    <li class="lib" attr-action="setWhat">class="lia" attr-action="setWhat"</li>
+    <li class="lib">class="lib"</li>
+    <li class="lib">class="lib"</li>
+    <li class="lib">class="lib"</li>
+</ul>
+
+<script>
+    function $bindAction(dom, event, listeners) {
+    //#这里的dom为绑定事件的元素，比如document.body
+    //#event为绑定的事件，比如click
+    //#listeners是待执行的事件对象
+        $addEvent(dom, event, function(e) {
+            //#这里获取事件e
+            //#获取点击的元素src
+            var e = e || window.event,
+                    src = e.target || e.srcElement,
+                    action,
+                    returnVal;
+
+            // #模拟冒泡的方式，先是src，然后是src.parentNode，再然后是src.parentNode.parent.Node
+            // #当前dom元素等于事件绑定的dom元素的时候，停止“冒泡”
+ while (src && src !== dom) {
+ //#循环获取dom元素的attr-action属性，
+  action = src.getAttribute('attr-action');
+ // #如果当前dom元素存在attr-action属性，并且事件对象中有该属性值的函数，执行这个函数
+ // #将事件e、当前dom元素、元素的属性attr-action值传给要执行的函数
+     if (listeners[action]) {
+         returnVal = listeners[action]({
+             src : src,
+             e : e,
+             action : action
+         });
+  //#如果上面的函数执行之后返回false，停止继续“冒泡”
+  if (returnVal === false) {
+      break;
+  }
+     }
+  //#获取当前dom元素的父元素节点
+     src = src.parentNode;
+ }
+        });
+    };
+
+    function $addEvent(obj, type, handle) {
+        if(!obj || !type || !handle) {
+            return;
+        }
+ //#绑定事件到多个对象，递归调用
+        if( obj instanceof Array) {
+            for(var i = 0, l = obj.length; i < l; i++) {
+                $addEvent(obj[i], type, handle);
+            }
+            return;
+        }
+ //#绑定多个事件，递归调用
+        if( type instanceof Array) {
+            for(var i = 0, l = type.length; i < l; i++) {
+                $addEvent(obj, type[i], handle);
+            }
+            return;
+        }
+// #下面这一大段用来记录当前页面一共绑定了多少个事件，以及事件的相关信息
+// #以及某个对象上面绑定的事件id
+        window.__allHandlers = window.__allHandlers || {};
+        window.__Hcounter = window.__Hcounter || 0;
+        function setHandler(obj, type, handler, wrapper) {
+            obj.__hids = obj.__hids || [];
+            var hid = 'h' + ++window.__Hcounter;
+            obj.__hids.push(hid);
+            window.__allHandlers[hid] = {
+                type : type,
+                handler : handler,
+                wrapper : wrapper
+            }
+        }
+// #这个里面的apply是为了修改绑定事件所执行函数中的this
+// #这个在低版本的IE中才真正起作用
+        function createDelegate(handle, context) {
+            return function() {
+                return handle.apply(context, arguments);
+            };
+        }
+
+ //#绑定事件，记录事件绑定信息
+        if(window.addEventListener) {
+            var wrapper = createDelegate(handle, obj);
+            setHandler(obj, type, handle, wrapper)
+            obj.addEventListener(type, wrapper, false);
+        }
+        else if(window.attachEvent) {
+            var wrapper = createDelegate(handle, obj);
+            setHandler(obj, type, handle, wrapper)
+            obj.attachEvent("on" + type, wrapper);
+        }
+        else {
+            obj["on" + type] = handle;
+        }
+    };
+    listeners = {
+        setWhat : function(opts) {
+            alert(opts.src.className);
+            return false;
+        }
+    };
+    window.onload = function(){$bindAction(document.getElementById('out'), ['click', 'mouseover'], listeners);}
+    console.log(window.__allHandlers);
+</script>

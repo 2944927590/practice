@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+ </head>
+ <style type="text/css">
+    body{margin:20px auto; padding:0; width:800px; }
+    canvas{border:dashed 2px #CCC}
+ </style>
+ <script type="text/javascript">
+    function $$(id){
+        return document.getElementById(id);
+    }
+    function pageLoad(){
+        var can = $$('can');
+        var cans = can.getContext('2d');
+        cans.font = 'bold 22px consolas';
+        cans.textAlign = 'left';
+        cans.textBaseline = 'top';
+        cans.strokeStyle = '#DF5326';
+        cans.strokeText('Hello', 100, 100);
+        cans.font = 'bold 111px arial';
+        cans.fillStyle = 'red';
+        cans.fillText('World', 300,300);
+    }
+    function img_click(){
+        var can = $$('can');
+        var cans = can.getContext('2d');
+        cans.clearRect(0,0,800,600);
+    }
+ </script>
+<body onload="pageLoad();">
+<form>
+  <input type="text" x-webkit-speech="" x-webkit-grammar="builtin:translate">
+  </form>
+    <canvas id="can" width="800px" height="600px" onclick="img_click(this);"></canvas>
+</body>
+</html>

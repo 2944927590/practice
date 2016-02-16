@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="Keywords" content="QQ聊天">
+		<meta name="description" content="模仿QQ聊天">
+		<title>模仿QQ聊天界面</title>
+
+		<!--css start-->
+			<style type="text/css">
+				html,
+				body,
+				div,
+				ul,li,
+				img {
+					margin: 0;
+					padding: 0;
+				}
+				li {
+					list-style: none;
+				}
+				/*
+					1、位置（position float overflow display 。。。）
+					2、大小（width、height、margin、padding、border）
+					3、文本（内容）
+					4、额外（background 、 动画、、、）
+				*/
+				#qq-chart {
+					position: relative;
+					width: 790px;
+					height: 510px;
+					margin: 50px auto 0;
+					font-family: "Microsoft Yahei";
+					background: url(images/bg.jpg) no-repeat;
+				}
+				#chart-content {
+					position: absolute;
+					top: 87px;
+					left: 2px;
+					width: 570px;
+					height: 270px;
+					overflow-y: auto;
+					padding-left: 11px;
+					background: rgb(232,239,249);
+				}
+				#chart-content .chart {
+					margin-top: 10px;
+				}
+				#chart-content .chart:after {
+					display: block;
+					height: 0;
+					clear: both;
+					content: "";
+				}
+				#chart-content .chart .content {
+					max-width: 475px;
+					padding: 0 5px;
+					line-height: 30px;
+					color: #eee;
+					font-size: 14px;
+					border-radius: 5px;
+				}
+				#chart-content .me .head-sculptures {
+					float: right;
+				}
+				#chart-content .me .content {
+					float: right;
+					margin-right: 10px;
+					background: #363;
+				}
+				#chart-content .other .head-sculptures {
+					float: left;
+				}
+				#chart-content .other .content {
+					float: left;
+					margin-left: 10px;
+					background: #f60;
+				}
+				#user-content {
+					position: absolute;
+					left: 1px;
+					bottom: 45px;
+					width: 570px;
+					height: 60px;
+					padding: 5px;
+					border: 0;
+					outline: none;
+					color: #333;
+					font-size: 18px;
+					background: rgb(232,239,249);
+				}
+				#content-submit {
+					position: absolute;
+					left: 495px;
+					bottom: 8px;
+					width: 65px;
+					height: 25px;
+					border: 0;
+					outline: none;
+					cursor: pointer;
+					background: transparent;
+				}
+				#chart-bottom .user {
+					position: absolute;
+					left: 35px;
+					bottom: 113px;
+					z-index: 1;
+					width: 20px;
+					height: 20px;
+				}
+				#user-all {
+					position: absolute;
+					left: 0;
+					bottom: 23px;
+					overflow: hidden;
+					z-index: 1;
+					width: 20px;
+					height: 0;
+					transition: height .6s;
+				}
+				#user-all.active {
+					height: 90px;
+					transition: height .6s;
+				}
+			</style>
+		<!--end-->
+	</head>
+	<body>
+		
+		<div id="qq-chart">
+			<div id="chart-content">
+			</div>
+			<div id="chart-bottom">
+				<div class="user">
+					<img id="user-now" src="images/me.png" width="20" height="20" />
+					<ul id="user-all">
+						<li data-user-id="0"><img src="images/me.png" width="20" height="20" /></li>
+						<li data-user-id="1"><img src="images/yansheng.png" width="20" height="20" /></li>
+						<li data-user-id="2"><img src="images/yhyl.png" width="20" height="20" /></li>
+						<li data-user-id="3"><img src="images/jzzc.png" width="20" height="20" /></li>
+					</ul>
+				</div>
+				<textarea id="user-content"></textarea>
+				<input type="button" id="content-submit" />
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			window.onload = function(){
+				var oChartContent = document.getElementById("chart-content");
+				var oUserContent = document.getElementById("user-content");
+				var oContentSubmit = document.getElementById("content-submit");
+				var oUserNow = document.getElementById("user-now");
+				var oUserAll = document.getElementById("user-all");
+				var oLis = oUserAll.getElementsByTagName("li");
+				/*
+				var vMeContentPre = '<div class="me chart"><img class="head-sculptures" src="images/me.png" width="30" height="30" /><div class="content">';
+				var vYanshengPre = '<div class="other chart"><img class="head-sculptures" src="images/yansheng.png" width="30" height="30" /><div class="content">';
+				var vYhyl = '<div class="other chart"><img class="head-sculptures" src="images/yhyl.png" width="30" height="30" /><div class="content">';
+				var vJzzc = '<div class="other chart"><img class="head-sculptures" src="images/jzzc.png" width="30" height="30" /><div class="content">';
+				*/
+				var aUser = ["me","yansheng","yhyl","jzzc"];
+				var vUserContent = "";
+				var i = 0;
+				var vUserId = 0;
+				
+				//初始化当前用户的信息前缀
+				getUserContentPre();
+
+
+				//发送消息
+				oContentSubmit.onclick = function(){
+					if(oUserContent.value == "")
+						return ;
+					oChartContent.innerHTML = oChartContent.innerHTML + vUserContent + oUserContent.value + "</div></div>";
+					oChartContent.scrollTop = oChartContent.scrollHeight;
+					oUserContent.value = "";
+				}
+
+				//选择用户
+				oUserNow.onclick = function(){
+					if(oUserAll.className != "active")
+						oUserAll.className = "active";
+					else
+						oUserAll.className = "";
+				}
+
+				//切换用户
+				for(i=0; i < oLis.length ; i++){
+					oLis[i].onclick = function(){
+						vUserId = this.getAttribute("data-user-id");
+						getUserContentPre();
+						oUserNow.setAttribute("src" , "images/"+aUser[vUserId]+".png");
+					}
+				}
+
+				function getUserContentPre(){
+					/*
+						if(vUserId==0)
+						    vUserType = "me";
+						else
+							vUserType = "other";
+
+							   ||
+
+					    vUserType = (vUserId==0) ? "me" : "other";
+					*/
+					var vUserType = (vUserId==0) ? "me" : "other";
+					vUserContent =  '<div class="'+vUserType+' chart"><img class="head-sculptures" src="images/'+aUser[vUserId]+'.png" width="30" height="30" /><div class="content">';
+				}
+
+			}
+		</script>
+	</body>
+</html>

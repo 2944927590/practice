@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .wrap canvas {
+            width: 33.3333%;
+            height: 33.3333%;
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <canvas data-value="1"></canvas>
+    <canvas data-value="2"></canvas>
+    <canvas data-value="3"></canvas>
+    <canvas data-value="4"></canvas>
+    <canvas data-value="5"></canvas>
+    <canvas data-value="6"></canvas>
+    <canvas data-value="7"></canvas>
+    <canvas data-value="8"></canvas>
+    <canvas data-value="9"></canvas>
+</div>
+<script>
+    var $ = function (el) {
+        return document.querySelector(el);
+    };
+    var touchMove, touchEnd;
+    var drawImage = function (url) {
+        return new Promise(function (resolve, reject) {
+            var img = new Image();
+            img.onload = function () {
+                resolve(img);
+            };
+            img.src = url;
+        })
+    };
+    drawImage("2.jpg").then(function (img) {
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var random = arr.sort(function() {return Math.random() > 0.5});
+        [].forEach.call(document.querySelectorAll("canvas"), function (item, i) {
+            item.width = $(".wrap").clientWidth / 3;
+            item.height = $(".wrap").clientHeight / 3;
+            item.style.order = random[i];
+            var ctx = item.getContext("2d");
+            ctx.drawImage(img, img.width * (i % 3) / 3, img.height * Math.floor(i / 3) / 3, img.width / 3, img.height / 3, 0, 0, item.width, item.height);
+        });
+    });
+    document.addEventListener("touchstart", function (e) {
+        var target = e.target;
+        if (e.target.tagName.toLowerCase() !== "canvas") {
+            return;
+        }
+        var ctx = target.getContext("2d");
+        var image = ctx.getImageData(0, 0, target.width, target.height);
+        var obj = target.cloneNode(true);
+        obj.getContext("2d").putImageData(image, 0, 0);
+        var top = target.getBoundingClientRect().top, left = target.getBoundingClientRect().left;
+        obj.style.cssText = "position: absolute; top: " + top + "px; left: " + left + "px";
+        document.body.appendChild(obj);
+        var point = {"x": e.touches[0].pageX, "y": e.touches[0].pageY};
+        document.addEventListener("touchmove", touchMove = function (e) {
+            obj.style.cssText = "position: absolute; top:" + (e.touches[0].pageY - point.y + top) + "px; left: " + (e.touches[0].pageX - point.x + left) + "px";
+        });
+        document.addEventListener("touchend", touchEnd = function (e) {
+            var pos = {"x": e.changedTouches[0].pageX, "y": e.changedTouches[0].pageY};
+            [].forEach.call(document.querySelectorAll(".wrap canvas"), function (item, i) {
+                var offset = item.getBoundingClientRect();
+                if (pos.x > offset.left && pos.x < (offset.left + item.width) && pos.y > offset.top && pos.y < (offset.top + item.height)) {
+                    var order1 = item.style.order;
+                    var order2 = target.style.order;
+                    if (obj.parentNode) {
+                        document.body.removeChild(obj);
+                    }
+                    item.style.order = order2;
+                    target.style.order = order1;
+                }
+            });
+            document.removeEventListener("touchmove", touchMove);
+            document.removeEventListener("touchend", touchEnd);
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+git shell 命令
+
+1.进入本地目录
+cd hy-ria-starter
+2.git remote -v
+3. 没有upstream则：git remote add upstream https://github.com/homkai/hy-ria-starter.git（master1项目地址）
+4.git remote -v
+5.git fetch upstream
+6.git checkout master

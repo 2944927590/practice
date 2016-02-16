@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="content-Type" content="text/html;charset=utf-8">
+<meta name="keywords" content=" />
+<meta name="description" content="/>
+<title>分页效果</title>
+<style>
+  body{
+      font-size:12px;
+  }
+</style>
+</head>
+<body>
+<input type="button" value="分页" onclick="initializePageNav(1)">
+<div id="pageDir"></div>
+<script language="JavaScript" type="text/script">
+<!--
+function initializePageNav(iCurrPage)
+{
+    var iPageSize = 2; //每页显示的条数
+    var iProCount = 12; //总记录条数
+    var b = ( ( iProCount % iPageSize ) != 0 );
+    var iPageCount = parseInt(iProCount / iPageSize) + ( b ? 1 : 0 ); // 分成几页
+    
+    if (iCurrPage > iPageCount) return false;
+    
+    iCurrPage = parseInt(iCurrPage);
+ 
+    var sTemp = "";
+
+    var sTemp1 = "每页:"+ iPageSize +"/<span style='color:red'>"+ iProCount +"</span>条  页数:<span style='color:blue'>"+ iCurrPage +"</span>/"+ iPageCount +"页";
+    
+    var sTemp2 = "<input type=\"text\" id=\"goPageNo\" value=\""+iCurrPage+"\" size=\"3\" /><input type=\"button\" value=\"GO\" onclick=\"initializePageNav($('goPageNo').value);\" />"
+
+    if (iProCount == 0) {
+        sTemp = "<font color='#cccccc'>首页 上一页 下一页 末页</font>";
+    }else if(iPageCount == 1) {
+        sTemp = "<font color='#cccccc'>首页 上一页 下一页 末页</font>"
+    }else if (iPageCount == iCurrPage) {
+        sTemp = "<a href='Javascript:initializePageNav(1)'>首页</a> <a href='Javascript:initializePageNav("+(iPageCount-1)+")'>上一页</a> <font color='#cccccc'>下一页 末页</font>"
+    }else if (iCurrPage == 1) {
+        sTemp = "<font color='#cccccc'>首页 上一页 </font><a href='Javascript:initializePageNav("+(iCurrPage+1)+")'>下一页</a> <a href='Javascript:initializePageNav("+iPageCount+")'>末页</a>"
+    }else {
+        sTemp = "<a href='Javascript:initializePageNav(1)'>首页</a> <a href='Javascript:initializePageNav("+(iCurrPage-1)+")'>上一页</a> <a href='Javascript:initializePageNav("+(iCurrPage+1)+")'>下一页</a> <a href='Javascript:initializePageNav("+(iPageCount)+")'>末页</a>"
+    }
+    $("pageDir").innerHTML = sTemp +"  "+ sTemp2 + "  " + sTemp1 ;
+}
+function $(o) {
+    return document.getElementById(o);
+}
+initializePageNav(1)
+
+</script>
+</body>
+</html>

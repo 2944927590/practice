@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+            #game_field {
+                display: block;
+                width: 898 px;
+                margin: 0 auto;
+                border: 2px solid silver;
+                //border-left: 4px solid silver
+            }
+            body {
+                background-color: #000000;
+            }
+
+        </style>
+        <script type="text/javascript" src="src/Game.js"></script>
+        <script type="text/javascript" src="src/Participants.js"></script>
+        <script type="text/javascript" src="src/CollisionResolver.js"></script>
+        <script type="text/javascript" src="src/CanvasUtil.js"></script>
+        <script type="text/javascript" src="src/Prizes.js"></script>
+    </head>
+    <body>
+        <canvas id="game_field" width="898" height="640" >
+            Your browser  doesn't support canvas!
+        </canvas>
+        <script type="text/javascript">
+            (function() {
+                var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame ||
+                        function(/* function */ callback) {
+                            window.setTimeout(callback, 1000 / 60);
+                        };
+                ;
+                window.requestAnimationFrame = requestAnimationFrame;
+            })();
+            var game = new Game();
+            game.drawAll();
+            function pauseToggle(e) {
+                if (e.key == "Spacebar" || e.keyCode == 32 || e.key == " ") {
+                    e.preventDefault();
+                    if (game.end) {
+                        game.restart();
+                    } else if (game.paused) {
+                        game.start();
+                    }
+                } else
+                    return;
+            }
+            window.addEventListener('keypress', pauseToggle);
+        </script>
+    </body>
+</html>

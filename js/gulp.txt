@@ -1,0 +1,12 @@
+npm install gulp -g
+mkdir learning-gulp
+cd learning-gulp
+npm init
+cd learning-gulp
+npm install gulp --save-dev
+
+npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev
+gulp [‘任务名’] 
+gulp 运行全部任务
+
+

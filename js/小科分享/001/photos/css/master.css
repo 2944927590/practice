@@ -1,0 +1,121 @@
+.content {
+	width: 100%;
+}
+.content .wrapper {
+	width: 100%;
+	min-width: 960px;
+	margin: 0 auto;
+	background: #ccc;
+}
+.wrapper .sidebar {
+	float: left;
+	width: 20%;
+	background: #ddd;
+}
+.sidebar .logo {
+	width: 100%;
+	background: #fff;
+}
+.sidebar .logo a {
+	display: block;
+	padding: 10% 16%;
+}
+.sidebar .logo a img {
+	width: 100%;
+}
+.sidebar .nav {
+	width: 100%;
+}
+.sidebar .nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sidebar .nav ul li {
+	width: 100%;
+	padding: 1px 0;
+	margin: 1px 0;
+	background: #30383b;
+}
+.sidebar .nav ul li.active, .sidebar .nav ul li:hover {
+	background: #23aeac;
+}
+.sidebar .nav ul li a {
+	display: inline-block;
+    width: 84%;
+    padding: 8%;
+    font-size: .9rem;
+    color: #fff;
+    text-align: right;
+}
+.sidebar .nav ul li a:link, .sidebar .friendlink ul li a:link {
+	text-decoration: none;
+}
+.sidebar .friendlink{
+	width: 100%;
+	height: 100%;
+	padding: 10px 0;
+	background: #30383b;
+}
+.sidebar .friendlink ul {
+	margin: 0;
+	padding: 10% 0 18% 18%;
+	list-style: none;
+}
+.sidebar .friendlink ul li {
+	float: left;
+}
+.sidebar .friendlink ul li a {
+	display: inline-block;
+	padding: 1px;
+}
+.sidebar .friendlink ul li a i {
+	display: inline-block;
+	width: 28px;
+    height: 28px;
+    margin: 0 3px;
+	background: url(../img/img-sprite.png) no-repeat;
+}
+.sidebar .friendlink ul li a i.feacebook {
+	background-position: -180px -8px;
+}
+.sidebar .friendlink ul li a i.gmail {
+	background-position: -216px -8px;
+}
+.sidebar .friendlink ul li a i.twitter {
+	background-position: -281px -8px;
+}
+.sidebar .friendlink ul li a i.pin {
+	background-position: -180px -8px;
+}
+.sidebar .friendlink ul li a i.dribble {
+	background-position: -180px -8px;
+}
+.sidebar .friendlink ul li a i.behance {
+	background-position: -180px -8px;
+}
+.sidebar .copyright {
+
+}
+.wrapper .main {
+	float: left;
+	width: 80%;
+}
+.wrapper .main .photos {
+	width: 100%;
+}
+.wrapper .main .photo {
+	float: left;
+	width: 25%;
+}
+.wrapper .main .photo a {
+	display: block;
+	width: 100%;
+	line-height: 0;
+}
+.wrapper .main .photo a img {
+	width: 100%;
+}
+.clear-fix {
+	clear: both;
+}
