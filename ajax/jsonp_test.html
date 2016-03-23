@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jsonp-test</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		function callback_data (data1, data2) {
+			console.log(data1);
+			alert(data2);
+		}
+	</script>
+	<script type="text/javascript" src="http://localhost/php/jsonp.php?callback=callback_data"></script>
+</body>
+</html>
