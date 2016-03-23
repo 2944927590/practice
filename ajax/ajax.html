@@ -56,6 +56,17 @@
             });
         });
 
+
+
+        (function($){
+            function checkData(){
+                $.get('data/data.json', function(r, r1, r2){
+                    //checkData();
+                });
+            }
+            checkData();
+        })($);
+
         //4. ajax
         $.ajax({
             type: "POST",
