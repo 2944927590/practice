@@ -1,0 +1,27 @@
+<html>
+<head>
+    <h2>PostMessage</h2>
+</head>
+<body>
+<input id="button" type="button" value="button" />
+<br />
+<script type="text/javascript">
+    window.onload = function () {
+        if (typeof window.postMessage === undefined) {//检测浏览器是否支持
+            alert("unavailibale");
+        } else {
+            var button = document.getElementById("button");
+            setInterval(
+                function () {
+                    var date = new Date();
+                    var s = date.getSeconds();
+                    button.value = s;
+                    //传送消息，window.top 是当前窗口的顶级窗口，
+                    //是接收消息的窗口，而不是当前的窗口，发送的是一个时间的秒数
+                    window.postMessage(s, "http://localhost/web_test/postMessage_get.html");
+                }, 1000);
+        }
+    }
+</script>
+</body>
+</html>

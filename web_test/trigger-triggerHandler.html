@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>trigger-triggerHandler</title>
+    <style>
+        td{
+            height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+<form action="" method="post" >
+    <label>爱好:</label>
+    <select multiple="multiple" size="3">
+        <option value="看书">看书</option>
+        <option value="旅游">旅游</option>
+        <option value="运动">运动</option>
+        <option value="购物">购物</option>
+        <option value="看书">看书</option>
+        <option value="旅游">旅游</option>
+        <option value="运动">运动</option>
+        <option value="购物">购物</option>
+    </select>
+    <select id="recipient-select" class="chosen-select" multiple="multiple">
+        <option>Aeróbics</option>
+        <option>Aeróbics en Agua</option>
+        <option>Aerografía</option>
+        <option>Aeromodelaje</option>
+    </select>
+
+    <select name="" id="">
+        <optgroup label="A">
+            <option value="">a</option>
+            <option value="">aa</option>
+            <option value="">aaa</option>
+            <option value="">aaaa</option>
+        </optgroup>
+        <optgroup label="B">
+            <option value="">b</option>
+            <option value="">bb</option>
+            <option value="">bbbb</option>
+            <option value="">bbbbb</option>
+        </optgroup>
+    </select>
+
+</form>
+
+<table border="1">
+    <colgroup span="3" valign="top"></colgroup>
+    <colgroup span="2" valign="bottom"></colgroup>
+    <tr>
+        <td>1垂直居上</td>
+        <td>2垂直居上</td>
+        <td>3垂直居上</td>
+        <td>4垂直居下</td>
+        <td>5垂直居下</td>
+    </tr>
+</table>
+
+<table width="100%" border="1">
+    <colgroup span="3">
+        <col width="20" align="left">
+        <col width="50" align="center">
+        <col width="80" align="right">
+    </colgroup>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+</table>
+
+<button id="old">.trigger("focus")</button>
+<button id="new">.triggerHandler("focus")</button><br><br>
+<input type="text" value="To Be Focused">
+<script src="js/jquery-2.1.4.js"></script>
+<script>
+    $(function(){
+        $("#old").click(function(){
+            $("input").trigger("focus");
+        });
+        $("#new").click(function(){
+            $("input").triggerHandler("focus");
+        });
+        $("input").focus(function(){
+            $("<span>Focused!</span>").appendTo("body").fadeOut(1000);
+        });
+    });
+</script>
+</body>
+</html>

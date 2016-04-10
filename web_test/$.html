@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$的三种用法</title>
+</head>
+<body>
+    <div id="a">
+        <div id="aa"></div>
+    </div>
+
+    <script src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        $(function(){  // 1.允许你绑定一个在 DOM 文档载入完成后执行的函数。该函数的作用如同 $(document).ready() 一样
+            $("#aa", "#a").html("aa"); //2.相当于$("#a").find("#aa");
+        });
+        $("<input>", { // 3.原始 HTML 的字符串来创建 DOM 元素 设置属性和事件
+            type: "text",
+            val: "Test",
+            focusin: function() {
+                $(this).addClass("active");
+            },
+            focusout: function() {
+                $(this).removeClass("active");
+            }
+        }).appendTo("#a");
+    </script>
+</body>
+</html>

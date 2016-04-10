@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var num = 4;
+    var str = '5 1 11 2 8';
+    var arrNum = [];
+    var arrResult = [];
+    var result = [];
+
+    arrNum.push((num-0));
+    arrResult.push(str.split(' '));
+
+    arrResult.forEach(function(v){
+        var count = 0;
+        result.push(dgNum1((v[0]-0), v, count));
+    });
+
+    console.log(result);
+
+    function dgNum1(num, arr, count){
+        if(arr.length == 5){
+            var arr = arr.splice(1, arr.length);
+        }
+        arr.sort(function(a, b){
+            return b - a;
+        });
+        if(num < arr[0]){
+            num += 1;
+            arr[0] -= 1;
+            count += 1;
+            dgNum1(num, arr, count);
+        } else {
+            return count;
+        }
+    }
+    result.forEach(function(v){
+        print(v);
+    });*/
+    var str = 'abc{:qwe}';
+    var reg = /\{:(\w+)}/g;
+    str = str.replace(reg, function($1, $2){
+        console.log($1);
+        return 'qqq';
+    });
+    console.log(str);
+
+
+</script>
+</body>
+</html>

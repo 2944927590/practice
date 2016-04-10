@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="zh-cn" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>useCapture</title>
+	<style type="text/css">
+	#outDiv
+	{
+		padding:10px 10px 10px 10px;
+		border:1px solid red;
+	}
+
+	#middleDiv
+	{
+		padding:10px 10px 10px 10px;
+		border:1px solid green;
+	}
+
+	#inDiv
+	{
+		padding:10px 10px 10px 10px;
+		border:1px solid blue;
+	}
+	</style>
+</head>
+<body>
+<div id="outDiv">
+  <div id="middleDiv">
+    <div id="inDiv">请在此点击鼠标。</div>
+  </div>
+</div>
+
+<div id="info"></div>
+<script src="js/jquery-2.1.4.js"></script>
+<script language="javascript" type="text/javascript">
+//	$("").on();
+var outDiv = document.getElementById("outDiv");
+var middleDiv = document.getElementById("middleDiv");
+var inDiv = document.getElementById("inDiv");
+var info = document.getElementById("info");
+
+outDiv.addEventListener("click",function (event) {
+							console.log(event);
+							info.innerHTML += "outDiv" + "<br>";
+						}, false);
+middleDiv.addEventListener("click",function (event) {
+							console.log(event);
+							info.innerHTML += "middleDiv" + "<br>"; 
+						}, false);
+inDiv.addEventListener("click",function (event) {
+							console.log(event);
+							info.innerHTML += "inDiv" + "<br>"; 
+						}, false);
+		(function(){
+			function a(i){
+				console.log(i ^ 1);
+				//a(i ^ 1); //
+			}
+			a(1);
+		})();
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<title>时钟</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+<script type="text/javascript">
+	window.onload = function(){
+		var clock = new Clock();
+	}
+	function Clock(){
+		this.obj = document.getElementById('canvas');
+		this.context = this.obj.getContext('2d');
+		this.x = this.obj.width / 2;
+		this.y = this.obj.height / 2;
+		this.r = this.x - 20;
+
+		this.init();
+		this.self = "Clock";
+		eval(this.self + "=this;");
+		setInterval(this.self + ".init();", 1000);
+	}
+	Clock.prototype = {
+		init: function(){
+			this.clear();
+			this.show();
+		},
+		clear: function(){
+			this.context.clearRect(0, 0, this.obj.width, this.obj.height);
+		},
+		show: function(){
+			var content = this.context;
+			var x = this.x;
+			var y = this.y;
+			var r = this.r;
+
+			var date = new Date();
+			var hour = date.getHours();
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+
+			var hValue = (-90 + hour*30 + minute/2) * Math.PI/180;
+			var mValue = (-90 + minute*6) * Math.PI/180;
+			var sValue = (-90 + second*6) * Math.PI/180;
+
+			//表盘小刻度
+			content.beginPath();
+			for(var i=0; i<60; i++){
+				content.moveTo(x, y);
+				content.arc(x, y, r, 6*i*Math.PI/180, 6*(i+1)*Math.PI/180, false);
+			}
+			content.closePath();
+			content.stroke();
+
+			//盖上中间部分
+			content.fillStyle = 'white';
+			content.beginPath();
+			content.moveTo(x, y);
+			content.arc(x, y, r*19/20, 0, 360*(i+1)*Math.PI/180, false);
+			content.closePath();
+			content.fill();
+
+			//表盘大刻度
+			content.lineWidth = 3;
+			content.beginPath();
+			for(var i=0; i<12; i++){
+				content.moveTo(x, y);
+				content.arc(x, y, r, 30*i*Math.PI/180, 30*(i+1)*Math.PI/180, false);
+			}
+			content.closePath();
+			content.stroke();
+
+			//盖上中间部分
+			content.fillStyle = 'white';
+			content.beginPath();
+			content.moveTo(x, y);
+			content.arc(x, y, r*18/20, 0, 360*(i+1)*Math.PI/180, false);
+			content.closePath();
+			content.fill();
+
+			//时针
+			content.lineWidth = 5;
+			content.beginPath();
+			content.moveTo(x, y);
+			content.arc(x, y, r*10/20, hValue, hValue, false);
+			content.closePath();
+			content.stroke();
+
+			//分针
+			content.lineWidth = 3;
+			content.beginPath();
+			content.moveTo(x, y);
+			content.arc(x, y, r*14/20, mValue, mValue, false);
+			content.closePath();
+			content.stroke();
+
+			//秒针
+			content.lineWidth = 1;
+			content.beginPath();
+			content.moveTo(x,y);
+			content.arc(x, y, r*19/20, sValue, sValue, false);
+			content.closePath();
+			content.stroke();
+		}
+	}
+</script>
+</body>
+</html>

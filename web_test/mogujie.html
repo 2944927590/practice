@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>mogujie</title>
+</head>
+<body>
+<script>
+//    var str = read_line();
+//    function checkStr(str){
+//        //字符串长度限制、不为空
+//        if(str == "" || str.length > 100 || str.length < 5){
+//            print("Too weak");
+//        } else {
+//            //至少一位大写字母、一位小写字母、一位数字，可以有至少一位特殊字符
+//            var reg = /[A-Z]+[a-z]+[0-9]+([\!\?\.\,\_]+)?/g;
+//            //判断是否有其他的特殊字符
+//            var reg2 = /[^\w\d\!\?\.\,]+/g;
+//            if(reg.test(str) && !reg2.test(str)){
+//                print("Correct");
+//            } else {
+//                print("Too weak");
+//            }
+//        }
+//    }
+//    checkStr( str );
+//    var str = '9 0 0 0';
+//    var arr = str.split(' ');
+//    console.log(arr);
+//    function check(arr){
+//        var num = 0;
+//        for (var i = 0, l = arr.length; i < l; i++){
+//            num += parseInt(arr[i]);
+//        }
+//        if(num != 10){
+//
+//        } else {
+//
+//        }
+//    }
+//    check(arr);
+    var width = 0;
+    var height = 0
+    var arr = [];
+    var count = 1;
+    var result = [];
+
+
+    function lengthOfWH(n, a){
+        console.log(n);
+        console.log(a);
+        if(a < 1 || n < 1) return;
+        return Math.ceil(n / a);
+    }
+    for(var i = 0; i < count - 0; i++){
+        var str = '6 6 4';
+        var arrChild = str.split(' ');
+        arr.push(arrChild);
+    }
+    console.log(arr);
+
+    arr.forEach(function(k, v){
+        console.log(k);
+        width = lengthOfWH( (k[0] - 0), (k[2] - 0) );
+        height = lengthOfWH( (k[1] - 0), (k[2] - 0) );
+        result.push(width * height);
+    });
+    result.forEach(function(v){
+        console.log(v);
+    });
+    function functions(flag) {
+        if (flag) {
+            function getValue() { return 'aa'; }
+        } else {
+            function getValue() { return 'bb'; }
+        }
+        return getValue();
+    }
+
+    var r = functions( true );
+    console.log(r);
+
+</script>
+</body>
+</html>

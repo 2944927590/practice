@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Web Storage 实验</h1>
+    <div id="msg" style=" margin: 10px 0; border: 1px solid black; padding: 10px; width: 300px; height: 100px;">
+    </div>
+    <input type="text" id="text" />
+    <select id="type">
+        <option value="session">sessionStorage</option>
+        <option value="local">localStorage</option>
+    </select>
+<button onclick="save();">
+    保存数据</button>
+<button onclick="load();">
+    读取数据</button>
+<script type="text/javascript">
+    var msg = document.getElementById('msg'),
+            text = document.getElementById('text'),
+            type = document.getElementById('type');
+
+    function save() {
+        var str = text.value;
+        var t = type.value;
+        if (t == 'session') {
+            sessionStorage.setItem('msg', str);
+        } else {
+            localStorage.setItem('msg', str);
+        }
+    }
+
+    function load() {
+        var t = type.value;
+        if (t == 'session') {
+            msg.innerHTML = sessionStorage.getItem('msg');
+        } else {
+            msg.innerHTML = localStorage.getItem('msg');
+        }
+    }
+
+</script>
+</body>
+</html>

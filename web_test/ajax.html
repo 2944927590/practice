@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+    <button id="button" type="button">click!</button>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/ajax.js"></script>
+    <script>
+
+        // 1. ajax
+        console.log(ajax);
+        ajax.request({
+            url: 'data/data.json',
+            type: 'get',
+            callback: function(data){
+                console.log(data);
+            }
+        });
+
+        // 2. ajax
+        function getText(url, callback){
+            var xhr = null;
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject();
+            }
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function(){
+                console.log(xhr);
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    var type = xhr.getResponseHeader('Content-Type');
+                    if(type.match(/^application/)){
+                        callback(xhr.responseText);
+                    }
+                }
+            }
+            xhr.send(null);
+        }
+
+        function callback(obj){
+            console.log(obj);
+        }
+
+        getText('data/data.json', callback);
+
+        //3. ajax
+        $("#button").on('click', function(){
+            $.get('data/data.json?t='+ Math.random(), function(r, r1, r2){
+                console.log(r);
+                console.log(r1);
+                console.log(r2);
+            });
+        });
+
+
+
+        (function($){
+            function checkData(){
+                $.get('data/data.json', function(r, r1, r2){
+                    //checkData();
+                });
+            }
+            checkData();
+        })($);
+
+        //4. ajax
+        $.ajax({
+            type: "POST",
+            url: "data/data.json",
+            timeout: 5000,
+            async: true,
+            cache: true,
+            data: {},
+            dataType: "json",
+            beforeSend: function (XMLHttpRequest) {
+                //要求为Function类型的参数，发送请求前可以修改XMLHttpRequest对象的函数，例如添加自定义
+                //HTTP头。在beforeSend中如果返回false可以取消本次ajax请求。XMLHttpRequest对象是惟一的参数。
+                //console.log(XMLHttpRequest);
+                this
+            },
+            complete: function(){
+                //要求为Function类型的参数，请求完成后调用的回调函数（请求成功或失败时均调用）
+
+            },
+            success: function(data, r, r1){
+                console.log(data);
+                console.log(r);
+                console.log(r1);
+            },
+            error: function(data, r, r1){
+                console.log(data);
+                console.log(r);
+                console.log(r1);
+            },
+            contentType: "application/x-www-form-urlencoded",
+                //当发送信息至服务器时，内容编码类型默认为"application/x-www-form-urlencoded"
+            dataFilter: function (data, type) {
+                //要求为Function类型的参数，给Ajax返回的原始数据进行预处理的函数。
+                //提供data和type两个参数。data是Ajax返回的原始数据，type是调用jQuery.ajax时提供的
+                //dataType参数。函数返回的值将由jQuery进一步处理。
+                
+            },
+            global: true,
+                //要求为Boolean类型的参数，默认为true。表示是否触发全局ajax事件。设置为false将不会触发全局
+                //ajax事件，ajaxStart或ajaxStop可用于控制各种ajax事件。
+            ifModified: false,
+                //要求为Boolean类型的参数，默认为false。仅在服务器数据改变时获取新数据。
+                //服务器数据改变判断的依据是Last-Modified头信息。默认值是false，即忽略头信息。
+            jsonp: "",
+                //要求为String类型的参数，在一个jsonp请求中重写回调函数的名字。
+                //该值用来替代在"callback=?"这种GET或POST请求中URL参数里的"callback"部分
+            username: "alsy",
+                //要求为String类型的参数，用于响应HTTP访问认证请求的用户名。
+            password: "123",
+                //要求为String类型的参数，用于响应HTTP访问认证请求的密码。
+            processData: true,
+                //要求为Boolean类型的参数，默认为true。默认情况下，发送的数据将被转换为对象（从技术角度
+                //来讲并非字符串）以配合默认内容类型"application/x-www-form-urlencoded"。如果要发送DOM
+                //树信息或者其他不希望转换的信息，请设置为false。
+            scriptCharset: "utf-8"
+                //要求为String类型的参数，只有当请求时dataType为"jsonp"或者"script"，并且type是GET时
+                //才会用于强制修改字符集(charset)。通常在本地和远程的内容编码不同时使用。
+        });
+
+        var a = (function(){
+            var name = 'name';
+            var person = {};
+            function showName() {
+                alert(name);
+            }
+            person.show = showName;
+            return person;
+        })();
+
+        a.show();
+
+
+        function SuperType(){
+            this.property = true;
+        }
+        SuperType.prototype.getSuperValue = function(){
+            return this.property;
+        };
+        function SubType(){
+            this.subproperty = false;
+        }
+        //继承了 SuperType
+        SubType.prototype = new SuperType();
+        SubType.prototype.getSubValue = function (){
+            return this.subproperty;
+        };
+        var instance = new SubType();
+        console.log(instance.getSuperValue()); //true
+
+
+
+    </script>
+</body>
+</html>

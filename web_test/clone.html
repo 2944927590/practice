@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>clone</title>
+    <style type="text/css">
+        .center {
+            width:960px;
+            margin:0 auto;
+            border:1px solid #333;
+            background-color:#ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="me" style="display:none">
+        <div id="widget">test</div>
+    </div>
+
+    <div class ="me"></div>
+
+    <form id="form1" runat="server" action="BatchAdd.aspx">
+        <div>
+            <table id="tblData">
+                <tr>
+                    <td>
+                        ID
+                    </td>
+                    <td>
+                        Title
+                    </td>
+                    <td>
+                        SmallClassName
+                    </td>
+                    <td>
+                        Author
+                    </td>
+                    <td>
+                        UpdateTime
+                    </td>
+                </tr>
+                <tr id="tRow0">
+                    <td>
+                        <input type="text" id="txtID" name="txtID0" />
+                    </td>
+                    <td>
+                        <input type="text" id="txtTitle" name="txtTitle0" />
+                    </td>
+                    <td>
+                        <input type="text" id="txtSmallClassName" name="txtSmallClassName0" />
+                    </td>
+                    <td>
+                        <input type="text" id="txtAuthor" name="txtAuthor0" />
+                    </td>
+                    <td>
+                        <input type="text" id="txtUpdateTime" name="txtUpdateTime0" />
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" id="hidNum" name="hidNum" value="0" />
+            <input type="button" id="btnAdd" value="Add" />
+            <input type="submit" id="btnSave" value="Save" />
+        </div>
+    </form>
+
+    <script src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+           /// alert($('#me').html());
+
+            var obj = $('#me').find("#widget").clone();
+            console.log(obj);
+            console.log($('#me').find("#widget"));
+            //obj.html("123");
+
+            obj.html("123");
+
+            obj.appendTo($('.me'));
+
+
+
+            $("#btnAdd").click(function() {
+                var num = $("#hidNum").val(); //
+                num = parseInt(num);
+                num++; //点击自加
+                $("#hidNum").val(num); //重新赋值
+                $("#tRow0").clone(true).attr("id", "tRow" + num).appendTo("#tblData"); //clone tr 并重新给定ID,装到table
+                $("#tRow" + num + " td").each(function() {//循环克隆的新行里面的td
+                    $(this).find("input[type='text']").val(""); //清空克隆行的数据
+//修改相关属性
+                    $(this).find("input[name='txtID0']").attr("id", "txtID" + num).attr("name", "txtID" + num);
+                    $(this).find("input[name='txtTitle0']").attr("id", "txtTitle" + num).attr("name", "txtTitle" + num);
+                    $(this).find("input[name='txtSmallClassName0']").attr("id", "txtSmallClassName" + num).attr("name", "txtSmallClassName" + num);
+                    $(this).find("input[name='txtAuthor0']").attr("id", "txtAuthor" + num).attr("name", "txtAuthor" + num);
+                    $(this).find("input[name='txtUpdateTime0']").attr("id", "txtUpdateTime" + num).attr("name", "txtUpdateTime" + num);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

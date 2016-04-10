@@ -1,0 +1,26 @@
+<html>
+<head>
+    <h2>ReceiveMessage</h2>
+</head>
+<body>
+<iframe id="iframe" src="http://localhost/web_test/postMessage_post.html"></iframe>
+<br />
+<input id="message" type="text" />
+<script type="text/javascript">
+    if (typeof window.postMessage === undefined) {
+        alert("unavailibale");
+    }
+    else{
+
+        function receiveMsg(e) {
+            if (e.origin == "http://localhost/web_test/postMessage_post.html") {//只接收指定的源发来的消息
+                var massage = document.getElementById("message");
+                console.log(e);
+                massage.value = e.data;
+            };
+        };
+        window.addEventListener("message",receiveMsg,true);
+    }
+</script>
+</body>
+</html>

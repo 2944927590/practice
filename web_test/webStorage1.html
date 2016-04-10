@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    Web Storage 实验</h1>
+<div id="msg" style="margin: 10px 0; border: 1px solid black; padding: 10px; width: 300px;
+        min-height: 100px;">
+</div>
+<input type="text" id="text" />
+<button onclick="save();">
+    留言</button>
+<button onclick="_clear();">
+    清空</button>
+<script type="text/javascript">
+    var msg = document.getElementById('msg'),
+            text = document.getElementById('text');
+
+    function save() {
+        var str = text.value;
+        var k = new Date().getTime();
+        localStorage.setItem(k, str);
+        init();
+    }
+
+    function init() {
+        msg.innerHTML = '';
+        var dom = '';
+        for (var i = 0, len = localStorage.length; i < len; i++) {
+            dom += '<div>' + localStorage.key(i) + ':' + localStorage.getItem(localStorage.key(i)) + '</div>'
+        }
+        msg.innerHTML = dom;
+    }
+
+    function _clear() {
+        msg.innerHTML = '';
+        localStorage.clear();
+    }
+</script>
+</body>
+</html>
