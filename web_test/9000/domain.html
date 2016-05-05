@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>127.0.0.1/9000/domain.html</h1>
+<script>
+    window.onload = function(){
+        window.getData =  function(url, data, cb){
+            var xhr = null;
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject();
+            }
+            xhr.open('POST', url, true);
+            xhr.send(data);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    cb(xhr.responseText);
+                }
+            }
+        }
+        
+        document.domain = '127.0.0.1';
+    }
+</script>
+</body>
+</html>

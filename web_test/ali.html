@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ali</title>
+</head>
+<style>
+    .test{
+        background-color: red;
+        height: 200px;
+        width: 200px;
+        transition: transform 1s linear;
+        transform: rotate(0deg);
+        transform: rotate(360deg);
+    }
+
+    #outer { opacity: 0 }
+</style>
+<body>
+    <div class="test">
+
+    </div>
+    <div id="outer"><div id="inner" style="width: 100px;"></div></div>
+    <script>
+        function handle(str){
+            var res;
+
+            //res = str.___.___.___.___
+            //["m", "o", "c", ".", "o", "a", "b", "o", "a", "t", ".", "w", "w", "w"]
+            res = str.split("").reverse().join('').replace('oab', '');
+            console.log(res);
+
+            return res;
+        }
+
+        var str1 = "www.taobao.com";
+
+
+        var str2 = handle(str1);//输出 moc.oab.www;
+    </script>
+</body>
+</html>

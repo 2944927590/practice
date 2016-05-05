@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
 <meta charset=utf-8>
 <title>demo</title>
@@ -19,9 +19,11 @@
     function readURL(input){
       if(input.files && input.files[0]){
         var reader = new FileReader();
+        console.log(reader);
         reader.onload = function(e){
           $('#blah').attr('src', e.target.result);
         }
+          console.log(input.files[0]);
         reader.readAsDataURL(input.files[0]);
       }
     }

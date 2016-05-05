@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+    <button id="button" type="button">click!</button>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/ajax.js"></script>
+    <script>
+        $(function(){
+
+            $("#button").on("a.b", function(){
+                console.log("a.b");
+            });
+            $("#button").on("a.b.c", function(){
+                console.log("a.b.c");
+            });
+            $("#button").on("a.b.c.d", function(){
+                console.log("a.b.c.d");
+            });
+            $("#button").on("click", function(){
+                $(this).off(".d");
+                $(this).trigger("a");
+            });
+
+            var type = 'click.a.b.c';
+
+            var namespaces = type.split(".");
+            console.log(namespaces);
+            type = namespaces.shift();
+            console.log(type);
+
+            console.log( namespaces.slice().sort().join("."));
+
+        });
+
+
+    </script>
+</body>
+</html>

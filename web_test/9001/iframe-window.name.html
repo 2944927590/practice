@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>127.0.0.1:9001 -- iframe-window.name</title>
+</head>
+<body>
+<h1>127.0.0.1:9001/iframe-window.name.html</h1>
+<script>
+    function test(){
+        var obj = document.getElementById("iframe");
+        obj.onload = function(){
+            var message = obj.contentWindow.name;
+            console.log(message);
+        }
+        obj.src = "http://127.0.0.1:9001/a.html";
+    }
+</script>
+<iframe id="iframe" src="http://127.0.0.1:9000/window.name.html" onload="test()"></iframe>
+</body>
+</html>

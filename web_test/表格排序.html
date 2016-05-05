@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>排序</title>
+<script>
+window.onload=function()
+{
+    var oBtn=document.getElementById('btn');
+    var oTable=document.getElementById('table');
+    
+    oBtn.onclick=function()
+    {
+        var arr=[];
+        for(var i=0; i < oTable.tBodies[0].rows.length;i++)
+        {
+            arr[i]=oTable.tBodies[0].rows[i];
+        }
+        
+        arr.sort(function(tr1,tr2){
+            n1=parseInt(tr1.cells[0].innerHTML);
+            n2=parseInt(tr2.cells[0].innerHTML);
+            return n1-n2;
+        });    
+        
+        for(var i=0;i < arr.length;i++)
+        {
+            oTable.tBodies[0].appendChild(arr[i]);
+        }
+    };
+};
+</script>
+</head>
+
+<body>
+<input type="button" value="排序" id="btn" />
+<table id="table" border="1" width="100%" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>专业</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>58</td>
+            <td>Simon</td>
+            <td>网站设计</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>Melon</td>
+            <td>网站设计</td>
+        </tr>
+        <tr>
+            <td>98</td>
+            <td>张三</td>
+            <td>物流</td>
+        </tr>
+        <tr>
+            <td>87</td>
+            <td>李四三</td>
+            <td>物流</td>
+        </tr>
+        <tr>
+            <td>798</td>
+            <td>张三</td>
+            <td>物流</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

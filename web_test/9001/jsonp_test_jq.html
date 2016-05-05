@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>127.0.0.1:9001</title>
+</head>
+<body>
+    <h1>127.0.0.1:9001/</h1>
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            //$.getJSON()方法跨域请求
+            $.getJSON("http://127.0.0.1:9000/jsonp.php?callback=?", function(jsonData, r1, r2){
+                console.log(jsonData);
+            });
+            // http://localhost/web_test/jsonp.php?callback=jQuery21409954014103859663_1462453062791&_=1462453062792
+
+            //$.getJSON()方法，携带参数, 不能post数据
+            $.getJSON("http://127.0.0.1:9000/jsonp.php?callback=?",{u:'abc', p: '123'}, function(jsonData, r1, r2){
+                console.log(jsonData);
+            });
+            // http://127.0.0.1/web_test/9000/jsonp.php?callback=jQuery2140011660632444545627_1462453180877&u=abc&p=123&_=1462453180878
+
+            //跨域post数据
+            $.ajax({
+                type: 'post',
+                url: "http://127.0.0.1:9000/jsonp_post.php",
+                crossDomain: true,
+                data: {u: 'alsy', age: 20},
+                dataType: "json", //json
+                success: function(result){
+                    console.log(result);
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span {
+            border: 1px solid red;
+            width: 100px; /*无效*/
+            height: 100px; /*无效*/
+            padding: 10px; /*有效*/
+            margin: 20px; /*有效*/
+        }
+
+        a{color: yellow;} /*特殊性值：0,0,0,1*/
+        div a{color: green;} /*特殊性值：0,0,0,2*/
+        .demo a{color: black;} /*特殊性值：0,0,1,1*/
+        .demo input[type="text"]{color: blue;} /*特殊性值：0,0,2,1*/
+        .demo *[type="text"]{color: grey;} /*特殊性值：0,0,2,0*/
+        #demo a{color: orange;} /*特殊性值：0,1,0,1*/
+        div#demo a{color: red;} /*特殊性值：0,1,0,2*/
+    </style>
+</head>
+<body>
+    <span>qqq</span>
+    <a href="">第一条应该是黄色</a> <!--适用第1行规则-->
+    <div class="demo">
+        <input type="text" value="第二条应该是蓝色" /><!--适用第4、5行规则，第4行优先级高-->
+        <a href="">第三条应该是黑色</a><!--适用第2、3行规则，第3行优先级高-->
+    </div>
+    <div id="demo">
+        <a href="">第四条应该是红色</a><!--适用第6、7行规则，第7行优先级高-->
+    </div>
+</body>
+</html>
