@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postmessage</title>
+</head>
+<body>
+<h1>127.0.0.1/9000/postmessage.html</h1>
+<script>
+    window.onload = function () {
+        if (typeof window.postMessage === undefined) {
+            alert("浏览器不支持postMessage！");
+        } else {
+            window.top.postMessage({u: "alsy"}, "http://127.0.0.1:9001");
+        }
+    }
+</script>
+</body>
+</html>

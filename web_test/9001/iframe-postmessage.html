@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>127.0.0.1:9001 -- iframe-postmessage</title>
+</head>
+<body>
+<h1>127.0.0.1:9001/iframe-postmessage.html</h1>
+<script>
+    function test(){
+        if (typeof window.postMessage === undefined) {
+            alert("浏览器不支持postMessage！");
+        } else {
+            window.addEventListener("message", function(e){
+                if (e.origin == "http://127.0.0.1:9000") { //只接收指定的源发来的消息
+                    console.log(e.data);
+                };
+            }, false);
+        }
+    }
+</script>
+<iframe id="iframe" src="http://127.0.0.1:9000/postmessage.html" onload="test()"></iframe>
+</body>
+</html>

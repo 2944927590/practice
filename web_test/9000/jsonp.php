@@ -1,9 +1,5 @@
 <?php
-	if($_POST){
-        $arr = array('name'=>$_POST['u'], 'age'=>$_POST['age']);
-        echo json_encode($arr);
-    }else {
-        echo "no post";
-    }
-
+    $callback = $_GET['callback'];
+    $arr = array("name"=>"alsy", "age"=>"20");
+    echo $callback."(". json_encode($arr) .");";
 ?>

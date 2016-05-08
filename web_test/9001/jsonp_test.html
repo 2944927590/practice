@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jsonp-test</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function callback_data (data) {
+			console.log(data);
+		}
+	</script>
+	<script type="text/javascript" src="http://127.0.0.1:9000/jsonp.php?callback=callback_data"></script>
+</body>
+</html>

@@ -8,11 +8,11 @@
 <h1>127.0.0.1:9001/iframe-domain.html</h1>
 <script>
     document.domain = '127.0.0.1';
-
     function test(){
         var obj = document.getElementById("iframe").contentWindow;
+        console.log(obj);
         obj.getData('http://127.0.0.1:9000/json_domain.php', '{u: "alsy-domain", age: "20"}', function(r){
-            console.log(r);
+            console.log(  eval("("+ r +")") );
         });
     }
 </script>

@@ -2,29 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>domain</title>
 </head>
 <body>
 <h1>127.0.0.1/9000/domain.html</h1>
 <script>
     window.onload = function(){
-        window.getData =  function(url, data, cb){
+        document.domain = '127.0.0.1';
+        window.getData =  function(url, data, cb) {
             var xhr = null;
-            if(window.XMLHttpRequest){
+            if (window.XMLHttpRequest) {
                 xhr = new XMLHttpRequest();
             } else {
-                xhr = new ActiveXObject();
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
             }
             xhr.open('POST', url, true);
-            xhr.send(data);
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState == 4 && xhr.status == 200){
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
                     cb(xhr.responseText);
                 }
             }
+            xhr.send(data);
         }
-        
-        document.domain = '127.0.0.1';
     }
 </script>
 </body>
