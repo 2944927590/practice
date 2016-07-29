@@ -11,19 +11,19 @@ window.onload=function()
     
     oBtn.onclick=function()
     {
-        var arr=[];
-        for(var i=0; i < oTable.tBodies[0].rows.length;i++)
+        var arr = [];
+        for(var i = 0; i < oTable.tBodies[0].rows.length; i++)
         {
             arr[i]=oTable.tBodies[0].rows[i];
         }
         
-        arr.sort(function(tr1,tr2){
-            n1=parseInt(tr1.cells[0].innerHTML);
-            n2=parseInt(tr2.cells[0].innerHTML);
-            return n1-n2;
+        arr.sort(function(tr1, tr2){
+            n1 = parseInt(tr1.cells[0].innerHTML);
+            n2 = parseInt(tr2.cells[0].innerHTML);
+            return n1 - n2;
         });    
         
-        for(var i=0;i < arr.length;i++)
+        for(var i = 0; i < arr.length; i++)
         {
             oTable.tBodies[0].appendChild(arr[i]);
         }
