@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script>
+      
+      const str2value = str => {
+          // 先匹配出所有的 text+package 组合，text可无
+          const pattern = /(.*?)#\{([^}]+?)\}/g;
+          let value = [], lastMatchIndex = 0, item;
+          while ((item = pattern.exec(str)) !== null) {
+            console.log(item);
+            const [sub, text, pack] = item;
+            lastMatchIndex = str.lastIndexOf(sub) + sub.length;
+            text && value.push({type: 'editableText', content: text});
+            pack && value.push({type: 'package', content: pack});
+          }
+          // 加上最后的text
+          value.push({type: 'editableText', content: str.substr(lastMatchIndex)});
+          return value;
+      };
+
+      // 哈哈#{地域}嘿嘿#{年龄}#{季节}#呵呵
+      const str = '哈哈#{地域}嘿嘿#{年龄}#{季节}#呵呵#{{sadf}}';
+
+      console.log(str2value(str));
+      
+      console.log('地域');
+
+      
+    </script>
+  </body>
+</html>

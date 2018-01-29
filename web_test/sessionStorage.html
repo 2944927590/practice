@@ -1,0 +1,25 @@
+<html>
+<head>
+    
+</head>
+<body>
+    <h2>sessionStorage</h2>
+    <h3 id="time">0</h3>
+
+<script type="text/javascript">
+    function run () {
+        console.time('test');
+        sessionStorage.setItem('test', new Date()/1000);
+        const test = sessionStorage.getItem('test');
+        var h3 = document.createElement('h3');
+        h3.innerText = test;
+        document.body.appendChild(h3);
+        document.getElementById('time').innerText = test;
+        console.log(test);
+        console.timeEnd('test');
+    }
+    
+    run();
+</script>
+</body>
+</html>
